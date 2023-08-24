@@ -1,1 +1,75 @@
-{% extends '/user/base.html'%}
+{% extends '/user/base.html'%} {% block title %} Mes demandes {% endblock %} {%
+block content %}
+<table class="table table-hover" style="width: 100%">
+  <thead>
+    <tr>
+      <th scope="col">Date début</th>
+      <th scope="col">Date fin</th>
+      <th scope="col">Column</th>
+      <th scope="col">Statut</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-active" onclick="window.location='#';" style="cursor: pointer;">
+      <th scope="row">Active</th>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+    <tr>
+      <th scope="row">Default</th>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+    <tr class="table-primary">
+      <th scope="row">Primary</th>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+    <tr class="table-secondary">
+      <th scope="row">Secondary</th>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+    <tr class="table-success">
+      <th scope="row">Success</th>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+    <tr class="table-danger">
+      <th scope="row">Danger</th>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+    <tr class="table-warning">
+      <th scope="row">Warning</th>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+    <tr class="table-info">
+      <th scope="row">Info</th>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+    <tr class="table-light">
+      <th scope="row">Light</th>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+    <tr class="table-dark">
+      <th scope="row">Dark</th>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}

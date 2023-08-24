@@ -16,5 +16,8 @@ def home():
 def nouvelle_demande():
 	return render_template("/user/nouvelleDemande.html")
 
+@app.route("/mes_demandes")
+def mes_demandes():
+	return render_template("/user/demandes.html")
 if __name__ == '__main__':
 	app.run(debug=True)
