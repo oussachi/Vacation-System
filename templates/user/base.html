@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="../../static/bootstrap.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+      <div class="container-fluid">
+        <div class="navbar-brand">LOGO</div>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav me-auto" style="flex-basis: 100%">
+            <li class="nav-item">
+              <a class="nav-link active" href="nouvelle_demande">Nouvelle Demande</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Mes Demandes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Profil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Log Out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% block content %} {% endblock %}
+  </body>
+</html>
