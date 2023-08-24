@@ -6,7 +6,7 @@ db = SQLAlchemy()
 
 @app.route("/")
 def hello_world():
-	return "<p>Hello, world</p>"
+	return render_template('login.html')
 	
 @app.route('/home')
 def home():

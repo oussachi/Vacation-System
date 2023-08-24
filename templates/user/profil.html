@@ -1,9 +1,48 @@
-{% extends '/user/base.html' %}
-
+{% extends '/user/base.html' %} 
 {% block title %} Profil {% endblock %}
-
 {% block content %}
-    <div>
-        Matricule : 
-    </div>
+<div>
+  <img src="missing-image.png" alt="Not found" onerror="this.src='static/missing-profile-photo.png';"
+  style="float: left;"/>
+</div>
+<table class="table table-hover">
+    <tbody>
+      <tr class="table-primary">
+        <th scope="row">Matricule</th>
+        <td>Valeur</td>
+      </tr>
+      <tr class="table-primary">
+        <th scope="row">Nom et prénom</th>
+        <td>Valeur</td>
+      </tr>
+      <tr class="table-primary">
+        <th scope="row">Date et lieu de naissance</th>
+        <td>Valeur</td>
+      </tr>
+      <tr class="table-primary">
+        <th scope="row">Poste</th>
+        <td>Valeur</td>
+      </tr>
+      <tr class="table-primary">
+        <th scope="row">Service</th>
+        <td>Valeur</td>
+      </tr>
+      <tr class="table-primary">
+        <th scope="row">Site</th>
+        <td>Valeur</td>
+      </tr>
+      <tr class="table-primary">
+        <th scope="row">Profil</th>
+        <td>Valeur</td>
+      </tr>
+      <tr class="table-primary">
+        <th scope="row">Congé acquis (N)</th>
+        <td>Valeur</td>
+      </tr>
+      <tr class="table-primary">
+        <th scope="row">Congé acquis (N - 1)</th>
+        <td>Valeur</td>
+      </tr>
+    </tbody>
+  </table>
 {% endblock %}

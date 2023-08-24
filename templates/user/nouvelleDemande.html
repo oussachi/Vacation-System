@@ -1,49 +1,47 @@
 {% extends '/user/base.html' %} {% block title %} Nouvelle Demande {% endblock
 %} {% block content %}
 <form>
-  <fieldset>
-    <legend>Legend</legend>
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Nom et prénom</label>
-      <div class="col-sm-10">
-        <input
-          type="text"
-          readonly=""
-          class="form-control-plaintext"
-          value="User 1"
-        />
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="form-label mt-4">Email address</label>
-      <input
-        type="email"
-        class="form-control"
-        id="exampleInputEmail1"
-        aria-describedby="emailHelp"
-        placeholder="Enter email"
-      />
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1" class="form-label mt-4"
-        >Other Data</label
-      >
+  <legend>Nouvelle demande de congé</legend>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Nom et prénom</label>
+    <div class="col-sm-10">
       <input
         type="text"
-        class="form-control"
-        id="exampleInputPassword1"
-        placeholder="Data"
-        autocomplete="off"
+        readonly=""
+        class="form-control-plaintext"
+        value="User 1"
       />
     </div>
-    <div class="form-group">
-      <label for="formFile" class="form-label mt-4"
-        >Default file input example</label
-      >
-      <input class="form-control" type="file" id="formFile" />
-    </div>
-    <br>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </fieldset>
+  </div>
+  <div class="form-group">
+    <label class="form-label mt-4">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+      placeholder="Enter email"
+    />
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1" class="form-label mt-4"
+      >Other Data</label
+    >
+    <input
+      type="text"
+      class="form-control"
+      id="exampleInputPassword1"
+      placeholder="Data"
+      autocomplete="off"
+    />
+  </div>
+  <div class="form-group">
+    <label for="formFile" class="form-label mt-4"
+      >Default file input example</label
+    >
+    <input class="form-control" type="file" id="formFile" />
+  </div>
+  <br />
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 {% endblock %}
