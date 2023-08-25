@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
+import datetime
 
 app = Flask(__name__)
 db = SQLAlchemy()
@@ -18,6 +19,11 @@ def nouvelle_demande():
 
 @app.route("/mes_demandes")
 def mes_demandes():
-	return render_template("/user/demandes.html")
+	demandes = [{
+		"date_debut" : datetime.datetime.now(),
+		"date_fin" : datetime.datetime.now(),
+		"statut" : "Processing"
+	}]
+	return render_template("/user/demandes.html", demandes = demandes)
 if __name__ == '__main__':
 	app.run(debug=True)
