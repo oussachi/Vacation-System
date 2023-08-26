@@ -11,19 +11,19 @@ block content %}
   <tbody>
     {% for demande in demandes %}
       {% if demande.statut == 'Accepted' %}
-      <tr class="table-success"  onclick="window.location='#';" style="cursor: pointer;">
+      <tr class="table-success"  onclick="window.location='demande';" style="cursor: pointer;">
         <td>{{ demande.date_debut }}</td>
         <td>{{ demande.date_fin }}</td>
         <td>{{ demande.statut }}</td>
       </tr>
       {% elif demande.statut == 'Refused' %}
-      <tr class="table-danger"  onclick="window.location='#';" style="cursor: pointer;">
+      <tr class="table-danger"  onclick="window.location='demande';" style="cursor: pointer;">
         <td>{{ demande.date_debut }}</td>
         <td>{{ demande.date_fin }}</td>
         <td>{{ demande.statut }}</td>
       </tr>
       {% else %}
-      <tr class="table-warning"  onclick="window.location='#';" style="cursor: pointer;">
+      <tr class="table-warning"  onclick="window.location='demande';" style="cursor: pointer;">
         <td>{{ demande.date_debut }}</td>
         <td>{{ demande.date_fin }}</td>
         <td>{{ demande.statut }}</td>

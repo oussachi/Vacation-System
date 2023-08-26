@@ -9,11 +9,13 @@
     <tbody>
       <tr class="table-primary">
         <th scope="row">Matricule</th>
-        <td>Valeur</td>
+        <td>{{ user.getElementsByTagName('matricule')[0].childNodes[0].data }}</td>
       </tr>
       <tr class="table-primary">
         <th scope="row">Nom et prénom</th>
-        <td>Valeur</td>
+        <td>{{ user.getElementsByTagName('nom')[0].childNodes[0].data }}
+            {{ user.getElementsByTagName('prenom')[0].childNodes[0].data }}
+        </td>
       </tr>
       <tr class="table-primary">
         <th scope="row">Date et lieu de naissance</th>

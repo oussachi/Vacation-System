@@ -7277,7 +7277,7 @@ textarea.form-control-lg {
 }
 
 .border-primary {
-  --bs-border-opacity: 1;
+  --bs-border-opacity: 0;
   border-color: rgba(var(--bs-primary-rgb), var(--bs-border-opacity)) !important;
 }
 

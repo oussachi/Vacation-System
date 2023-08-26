@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 import datetime
+from Controllers import xmlController
 
 app = Flask(__name__)
 db = SQLAlchemy()
@@ -11,7 +12,9 @@ def hello_world():
 	
 @app.route('/home')
 def home():
-	return render_template('/user/profil.html')
+	user = xmlController.getElementsByTag('./file.xml', 'user')[0]
+	print(user)
+	return render_template('/user/profil.html', user=user)
 
 @app.route("/nouvelle_demande")
 def nouvelle_demande():
@@ -25,5 +28,10 @@ def mes_demandes():
 		"statut" : "Processing"
 	}]
 	return render_template("/user/demandes.html", demandes = demandes)
+
+@app.route("/demande")
+def demande():
+	return render_template("/user/demande.html")
+
 if __name__ == '__main__':
 	app.run(debug=True)
