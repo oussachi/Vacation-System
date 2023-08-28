@@ -1,0 +1,30 @@
+{% extends '/GRH/base.html' %}
+{% block title %} Motif {% endblock %}
+{% block content %}
+<table class="table table-hover" style="width: 100%">
+  <thead>
+    <tr>
+      <th scope="col">Employé</th>
+      <th scope="col">Date début</th>
+      <th scope="col">Date fin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      class="table-secondary"
+      onclick="window.location='details_demande';"
+      style="cursor: pointer"
+    >
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+  </tbody>
+</table>
+<div class="form-group">
+  <label class="form-label mt-4">Motif</label>
+  <textarea class="form-control" rows="4"></textarea>
+</div>
+<br>
+<button type="button" class="btn btn-danger">Refuser et envoyer motif</button>
+{% endblock %}

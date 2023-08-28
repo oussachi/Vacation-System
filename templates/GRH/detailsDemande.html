@@ -2,8 +2,16 @@
 {% block title %} Demande {% endblock %} 
 {% block content %}
 <h1>details demande</h1>
-<div style="float:right; margin-right: 70px;">
-  <button type="button" class="btn btn-success" style="margin-right: 100px;">Accepter la demande</button>
-  <button type="button" class="btn btn-danger">Refuser la demande</button>
+<div style="float:right; margin-right: 50px; width: 500px;">
+  <div style="float: left;">
+    <form>
+      <button type="submit" class="btn btn-success">Accepter la demande</button>
+    </form>
+  </div>
+  <div style="float: right;">
+    <form action="/motif_refus">
+      <button type="submit" class="btn btn-danger">Refuser la demande</button>
+    </form>
+  </div>
 </div>
 {% endblock %}
