@@ -1,5 +1,6 @@
-{% extends '/GRH/base.html' %} {%block title %} Liste des demandes {% endblock
-%} {% block content %}
+{% extends '/manager/base.html' %}
+{% block title %} Liste des demandes {% endblock %} 
+{% block content %}
 <table class="table table-hover" style="width: 100%">
   <thead>
     <tr>
@@ -11,7 +12,11 @@
   </thead>
   <tbody>
     {% for demande in demandes %}
-    <tr class="table-secondary" onclick="window.location='details_demande';" style="cursor: pointer;">
+    <tr
+      class="table-secondary"
+      onclick="window.location='details_demande';"
+      style="cursor: pointer"
+    >
       <td>Column content</td>
       <td>Column content</td>
       <td>Column content</td>

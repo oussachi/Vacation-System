@@ -16,15 +16,15 @@ def login():
 		return loginFunction(request)
 
 # ----------------------------------------- Employee Endpoints ------------------------------ #
-@app.route('/home_user')
+@app.route('/employé/home')
 def home_user():
 	return render_template('/user/profil.html')
 
-@app.route("/nouvelle_demande")
+@app.route("/employé/nouvelle_demande")
 def nouvelle_demande():
 	return render_template("/user/nouvelleDemande.html")
 
-@app.route("/mes_demandes")
+@app.route("/employé/mes_demandes")
 def mes_demandes():
 	demandes = [{
 		"date_debut" : datetime.datetime.now(),
@@ -33,18 +33,18 @@ def mes_demandes():
 	}]
 	return render_template("/user/demandes.html", demandes = demandes)
 
-@app.route("/demande")
+@app.route("/employé/demande")
 def demande():
 	return render_template("/user/demande.html")
 
 
 
 # ----------------------------------------- GRH Endpoints ------------------------------ #
-@app.route("/home_grh")
-def home_grh():
+@app.route("/GRH/home")
+def home_GRH():
 	return render_template("/GRH/profil.html")
 
-@app.route("/liste_demandes")
+@app.route("/GRH/demandes")
 def liste_demande():
 	demandes = [{
 		"date_debut" : datetime.datetime.now(),
@@ -57,15 +57,23 @@ def liste_demande():
 	}]
 	return render_template("/GRH/listeDemandes.html", demandes=demandes)
 
-@app.route("/details_demande")
+@app.route("/GRH/details_demande")
 def details_demande():
 	return render_template("/GRH/detailsDemande.html")
 
-@app.route("/motif_refus")
+@app.route("/GRH/motif_refus")
 def motif_refus():
 	return render_template("/GRH/motif.html")
 
+
 # ----------------------------------------- Manager Endpoints ------------------------------ #
+@app.route("/manager/home")
+def home_manager():
+	return render_template('/manager/profil.html')
+
+@app.route("/manager/demandes")
+def manager_demandes():
+	return render_template('/manager/listeDemandes.html')
 # ----------------------------------------- Admin Endpoints ------------------------------ #
 
 

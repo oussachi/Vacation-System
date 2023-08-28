@@ -1,9 +1,9 @@
 {% extends '/GRH/base.html' %} 
-{%block title %} Profil {% endblock %}
+{% block title %} Profil {% endblock %} 
 {% block content %}
 <div>
   <img
-    src="missing-image.png"
+    src="{{ url_for('static', filename='missing-profile-photo.png') }}"
     alt="Not found"
     onerror="this.src='static/missing-profile-photo.png';"
     style="float: left"
@@ -13,15 +13,11 @@
   <tbody>
     <tr class="table-primary">
       <th scope="row">Matricule</th>
-      <td>
-        Valeur
-      </td>
+      <td>Valeur</td>
     </tr>
     <tr class="table-primary">
       <th scope="row">Nom et prénom</th>
-      <td>
-        Valeur
-      </td>
+      <td>Valeur</td>
     </tr>
     <tr class="table-primary">
       <th scope="row">Date et lieu de naissance</th>
