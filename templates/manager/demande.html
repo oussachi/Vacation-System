@@ -1,4 +1,4 @@
-{% extends '/GRH/base.html' %} 
+{% extends '/manager/base.html' %} 
 {% block title %} Demande {% endblock %} 
 {% block content %}
 <h1>details demande</h1>
@@ -9,8 +9,8 @@
     </form>
   </div>
   <div style="float: right;">
-    <form action="/GRH/motif_refus">
-      <button type="submit" class="btn btn-danger">Refuser la demande</button>
+    <form action="/manager/demande/proposition">
+      <button type="submit" class="btn btn-danger">Proposer une nouvelle date</button>
     </form>
   </div>
 </div>

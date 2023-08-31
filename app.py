@@ -66,14 +66,34 @@ def motif_refus():
 	return render_template("/GRH/motif.html")
 
 
+
 # ----------------------------------------- Manager Endpoints ------------------------------ #
 @app.route("/manager/home")
 def home_manager():
 	return render_template('/manager/profil.html')
 
+
 @app.route("/manager/demandes")
 def manager_demandes():
-	return render_template('/manager/listeDemandes.html')
+	demandes = [{
+		"date_debut" : datetime.datetime.now(),
+		"date_fin" : datetime.datetime.now(),
+		"statut" : "Processing"
+	}, {
+		"date_debut" : datetime.datetime.now(),
+		"date_fin" : datetime.datetime.now(),
+		"statut" : "Processing"
+	}]
+	return render_template('/manager/listeDemandes.html', demandes=demandes)
+
+@app.route("/manager/demande")
+def manager_demande():
+	return render_template("/manager/demande.html")
+
+@app.route("/manager/demande/proposition")
+def proposition():
+	return render_template("/manager/proposition.html")
+
 # ----------------------------------------- Admin Endpoints ------------------------------ #
 
 

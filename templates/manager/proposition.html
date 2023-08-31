@@ -1,0 +1,42 @@
+{% extends '/manager/base.html' %} {% block title %} Proposition {% endblock %}
+{% block content %}
+<table class="table table-hover" style="width: 100%">
+  <thead>
+    <tr>
+      <th scope="col">Employé</th>
+      <th scope="col">Date début</th>
+      <th scope="col">Date fin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      class="table-secondary"
+      onclick="window.location='/manager/demande';"
+      style="cursor: pointer"
+    >
+      <td>Column content</td>
+      <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<form>
+  <div style="width: 100%; overflow: hidden;">
+    <div class="form-group" style="float: left; padding-left: 100px;">
+      <label class="col-form-label mt-4">Date de début</label>
+      <input type="date" class="form-control" style="width: 400px" />
+    </div>
+    <div class="form-group" style="float: right; padding-right: 100px;">
+      <label class="col-form-label mt-4">Date de fin</label>
+      <input type="date" class="form-control" style="width: 400px" />
+    </div>
+  </div>
+  <br />
+  <div style="text-align: center;">
+    <button type="submit" class="btn btn-primary">
+      Soumettre la proposition
+    </button>
+  </div>
+</form>
+{% endblock %}
