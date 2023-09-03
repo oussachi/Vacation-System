@@ -92,6 +92,7 @@ class demandeCongé(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date_debut = db.Column(db.String, unique=False, nullable=False)
     date_fin = db.Column(db.String, unique=False, nullable=False)
+    statut = db.Column(db.String, unique=False, nullable=False)
     employee_matricule = db.Column(db.String, unique=False, nullable=False)
     #employee_matricule = db.Column(db.Ineteger, db.ForeignKey('employee.matricule', nullable=False))
 

@@ -2,7 +2,6 @@
 
 from flask import Flask, render_template, request
 import datetime
-from Controllers.xmlController import *
 import os
 from Models.models import *
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -22,6 +21,7 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 from Controllers.loginController import *
 from Controllers.baseController import *
+from Controllers.demandeController import *
 
 
 # ------------------------ ENDPOINTS -------------------------------- #
@@ -52,19 +52,22 @@ def home_user():
 	user = get_user()
 	return render_template('/user/profil.html', user=user)
 
-@app.route("/employé/nouvelle_demande")
+@app.route("/employé/nouvelle_demande", methods=["GET", "POST"])
 def nouvelle_demande():
 	user = get_user()
-	return render_template("/user/nouvelleDemande.html", user=user)
+	if (request.method == 'GET'):
+		return render_template("/user/nouvelleDemande.html", user=user)
+	else:
+		return createDemande(request, user)
 
 @app.route("/employé/mes_demandes")
 def mes_demandes():
-	demandes = [{
-		"date_debut" : datetime.datetime.now(),
-		"date_fin" : datetime.datetime.now(),
-		"statut" : "Processing"
-	}]
-	return render_template("/user/demandes.html", demandes = demandes)
+	#demandes = [{
+	#	"date_debut" : datetime.datetime.now(),
+	#	"date_fin" : datetime.datetime.now(),
+	#	"statut" : "Processing"
+	#}]
+	return getDemandes()
 
 @app.route("/employé/demande")
 def demande():

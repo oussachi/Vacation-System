@@ -1,6 +1,6 @@
 {% extends '/user/base.html' %} {% block title %} Nouvelle Demande {% endblock
 %} {% block content %}
-<form>
+<form action="/employé/nouvelle_demande" method="POST">
   <legend>Nouvelle demande de congé</legend>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Matricule</label>
@@ -26,4 +26,6 @@
   <br />
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+{{ error }}
 {% endblock %}

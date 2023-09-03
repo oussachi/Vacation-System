@@ -1,5 +1,4 @@
 from flask import render_template, session, redirect
-from Controllers.xmlController import *
 from app import db
 from Models.models import userLoginCredentials
 import hashlib
