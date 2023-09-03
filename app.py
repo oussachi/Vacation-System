@@ -52,6 +52,7 @@ def home_user():
 	user = get_user()
 	return render_template('/user/profil.html', user=user)
 
+
 @app.route("/employé/nouvelle_demande", methods=["GET", "POST"])
 def nouvelle_demande():
 	user = get_user()
@@ -59,6 +60,7 @@ def nouvelle_demande():
 		return render_template("/user/nouvelleDemande.html", user=user)
 	else:
 		return createDemande(request, user)
+
 
 @app.route("/employé/mes_demandes")
 def mes_demandes():
@@ -69,10 +71,10 @@ def mes_demandes():
 	#}]
 	return getDemandes()
 
-@app.route("/employé/demande")
-def demande():
-	user = get_user()
-	return render_template("/user/demande.html", user=user)
+
+@app.route("/employé/demande/<int:id>")
+def demande(id):
+	return getDemande(id)
 
 
 

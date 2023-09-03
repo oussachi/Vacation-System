@@ -6,7 +6,7 @@ block content %}
     class="form-control"
     id="readOnlyInput"
     type="text"
-    placeholder=""
+    placeholder={{ demande.date_debut }}
     readonly=""
   />
 </div>
@@ -16,7 +16,7 @@ block content %}
     class="form-control"
     id="readOnlyInput"
     type="text"
-    placeholder=""
+    placeholder={{ demande.date_fin }}
     readonly=""
   />
 </div>
@@ -27,4 +27,6 @@ block content %}
 <form>
   <button type="Submit" class="btn btn-danger">Annuler la demande</button>
 </form>
+
+{{ error }}
 {% endblock %}

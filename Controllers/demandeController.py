@@ -28,3 +28,10 @@ def getDemandes():
         return render_template('/user/demandes.html', demandes=demandes)
     except Exception as e:
         return render_template('/user/demandes.html', error=str(e))
+    
+def getDemande(id):
+    try:
+        demande = demandeCongé.query.filter_by(id=id).first()
+        return render_template('/user/demande.html', demande=demande)
+    except Exception as e:
+        return render_template('/user/demande.html', error=str(e))
