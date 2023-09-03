@@ -1,10 +1,14 @@
+# ------------------------ IMPORTS ------------------------------------ #
+
 from flask import Flask, render_template, request
-from flask_sqlalchemy import SQLAlchemy
 import datetime
 from Controllers.xmlController import *
 import os
-from Models.models import db
+from Models.models import *
 basedir = os.path.abspath(os.path.dirname(__file__))
+
+
+# ----------------------- CONFIGS -------------------------------------- #
 
 app = Flask(__name__)
 
@@ -17,24 +21,10 @@ db.init_app(app)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 from Controllers.loginController import *
+from Controllers.baseController import *
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# ------------------------ ENDPOINTS -------------------------------- #
 
 
 #Sign in endpoint
@@ -54,27 +44,32 @@ def login():
 	else:
 		return loginFunction(request)
 
+
 # ----------------------------------------- Employee Endpoints ------------------------------ #
+
 @app.route('/employé/home')
 def home_user():
-	return render_template('/user/profil.html')
+	user = get_user()
+	return render_template('/user/profil.html', user=user)
 
 @app.route("/employé/nouvelle_demande")
 def nouvelle_demande():
-	return render_template("/user/nouvelleDemande.html")
+	user = get_user()
+	return render_template("/user/nouvelleDemande.html", user=user)
 
 @app.route("/employé/mes_demandes")
 def mes_demandes():
 	demandes = [{
 		"date_debut" : datetime.datetime.now(),
 		"date_fin" : datetime.datetime.now(),
-		"statut" : "Accepted"
+		"statut" : "Processing"
 	}]
 	return render_template("/user/demandes.html", demandes = demandes)
 
 @app.route("/employé/demande")
 def demande():
-	return render_template("/user/demande.html")
+	user = get_user()
+	return render_template("/user/demande.html", user=user)
 
 
 

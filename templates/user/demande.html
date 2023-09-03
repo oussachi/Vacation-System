@@ -1,5 +1,30 @@
-{% extends '/user/base.html' %}
-{% block title %} Demande {% endblock %}
-{% block content %}
-<h1>details demande</h1>
+{% extends '/user/base.html' %} {% block title %} Demande {% endblock %} {%
+block content %}
+<div class="form-group">
+  <label class="form-label mt-4" for="readOnlyInput">Date de début</label>
+  <input
+    class="form-control"
+    id="readOnlyInput"
+    type="text"
+    placeholder=""
+    readonly=""
+  />
+</div>
+<div class="form-group">
+  <label class="form-label mt-4" for="readOnlyInput">Date de fin</label>
+  <input
+    class="form-control"
+    id="readOnlyInput"
+    type="text"
+    placeholder=""
+    readonly=""
+  />
+</div>
+<br>
+<form style="float: left; margin-right: 50px;">
+  <button type="Submit" class="btn btn-warning">Modifier la demande</button>
+</form>
+<form>
+  <button type="Submit" class="btn btn-danger">Annuler la demande</button>
+</form>
 {% endblock %}

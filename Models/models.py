@@ -87,3 +87,21 @@ class userLoginCredentials(db.Model):
             'matricule' : self.matricule,
             'hashed_password' : self.hashed_password
         }
+    
+class demandeCongé(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date_debut = db.Column(db.String, unique=False, nullable=False)
+    date_fin = db.Column(db.String, unique=False, nullable=False)
+    employee_matricule = db.Column(db.String, unique=False, nullable=False)
+    #employee_matricule = db.Column(db.Ineteger, db.ForeignKey('employee.matricule', nullable=False))
+
+    def __repr__(self):
+        return f'Request {self.id} done by Employee {self.employee_matricule}'
+
+    def toJSON(self):
+        return {
+            'id': self.id,
+            'date_debut' : self.date_debut,
+            'date_fin' : self.date_fin,
+            'employee' : self.employee_matricule
+        }

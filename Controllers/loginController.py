@@ -50,6 +50,8 @@ def loginFunction(request):
         if(user):
             hashed_input_password = hash_password(password)
             if(hashed_input_password == user.hashed_password):
+                session['user'] = user.matricule
+                session.permanent = True
                 role = user.role
                 if(role == 'Manager'):
                     return redirect('/manager/home')
