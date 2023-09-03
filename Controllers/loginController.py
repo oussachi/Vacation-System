@@ -2,7 +2,17 @@ from flask import render_template, session, redirect
 from Controllers.xmlController import *
 from app import db
 from Models.models import userLoginCredentials
+import hashlib
         
+
+def hash_password(password):
+    h = hashlib.sha3_256()
+    byte_password = bytes(password, 'ascii')
+    h.update(byte_password)
+    hashed_password = h.hexdigest()
+    return hashed_password
+
+
 def sign_in(request):
     try:
         matricule = request.form['matricule']
@@ -11,9 +21,8 @@ def sign_in(request):
         if(user == None and password):
             new_user = userLoginCredentials(
                 matricule = matricule,
-                hashed_password = hash(password)
+                hashed_password = hash_password(password)
             )
-            print(f'{password} ====> {hash(password)}')
             db.session.add(new_user)
             db.session.commit()
 
@@ -32,9 +41,7 @@ def loginFunction(request):
         password = request.form['password']
         user = userLoginCredentials.query.filter_by(matricule=matricule).first()
         if(user):
-            hashed_input_password = hash(password)
-            print(f'Login : {password} =====> {hashed_input_password}')
-            print(f'user password =====> {user.hashed_password}')
+            hashed_input_password = hash_password(password)
             if(hashed_input_password == user.hashed_password):  
                 return redirect('/employé/home')
             else:
