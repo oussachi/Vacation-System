@@ -20,14 +20,13 @@
             <form action="/" method="POST">
                 <div class="form-group">
                   <label for="exampleInputEmail1" class="form-label mt-4"
-                    >Email address</label
+                    >Matricule</label
                   >
                   <input
-                    type="email"
+                    type="text"
                     class="form-control"
-                    name="email"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter email"
+                    name="matricule"
+                    placeholder="Enter matricule"
                     style="width: 100%;"
                   />
                 </div>
@@ -39,7 +38,6 @@
                       type="password"
                       class="form-control"
                       name="password"
-                      aria-describedby="emailHelp"
                       placeholder="Enter password"
                       style="width: 100%;"
                     />
@@ -47,9 +45,14 @@
                   <br>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
-              <h1>Don't have an account ? <a href="/sign_in">Create one</a></h1>
+              <br>
+              <h4>Don't have an account ?</h4>
+              <h4><a href="/signin">Create one</a></h4>
         </p>
       </div>
     </div>
+    {% if error %}
+      {{ error }}
+    {% endif %}
   </body>
 </html>

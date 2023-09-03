@@ -1,28 +1,44 @@
+from flask import render_template, session, redirect
 from Controllers.xmlController import *
-from flask import render_template
+from app import db
+from Models.models import userLoginCredentials
+        
+def sign_in(request):
+    try:
+        matricule = request.form['matricule']
+        password = request.form['password']
+        user = userLoginCredentials.query.filter_by(matricule=matricule).first()
+        if(user == None and password):
+            new_user = userLoginCredentials(
+                matricule = matricule,
+                hashed_password = hash(password)
+            )
+            print(f'{password} ====> {hash(password)}')
+            db.session.add(new_user)
+            db.session.commit()
 
-def find_role(email):
-    employees = getElementsByTag('file.xml', 'employe')
-    for employee in employees:
-        if employee.getElementsByTagName('email')[0].childNodes[0].data == email:
-            return 'Employé'
-    GRH = getElementsByTag('file.xml', 'GRH')
-    for RH in GRH:
-        if RH.getElementsByTagName('email')[0].childNodes[0].data == email:
-            return 'GRH'
-    managers = getElementsByTag('file.xml', 'manager')
-    for manager in managers:
-        if manager.getElementsByTagName('email')[0].childNodes[0].data == email:
-            return 'Manager'
-    return 'Admin'
-
+            session['user'] = new_user.matricule
+            session.permanent = True
+            return redirect('/employé/home')
+        else:
+            return render_template('/signin.html', error='User found with given matricule')
+    except Exception as e:
+        return render_template('/signin.html', error=str(e))
+    
 
 def loginFunction(request):
-    email = request.form['email']
-    password = request.form['password']
-    if(password==""):
-        role = find_role(email)
-        if(role=='Employé'):
-            return render_template('/user/profil.html')
-        else:
-            return render_template('/GRH/profil.html')
+    try:
+        matricule = request.form['matricule']
+        password = request.form['password']
+        user = userLoginCredentials.query.filter_by(matricule=matricule).first()
+        if(user):
+            hashed_input_password = hash(password)
+            print(f'Login : {password} =====> {hashed_input_password}')
+            print(f'user password =====> {user.hashed_password}')
+            if(hashed_input_password == user.hashed_password):  
+                return redirect('/employé/home')
+            else:
+                return render_template('login.html', error='Wrong password')
+        return render_template('login.html', error='No user found for given matricule')
+    except Exception as e:
+        return render_template('login.html', error=str(e))

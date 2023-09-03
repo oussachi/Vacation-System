@@ -1,11 +1,40 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import datetime
-from Controllers.loginController import *
 from Controllers.xmlController import *
+import os
+from Models.models import db
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
-db = SQLAlchemy()
+
+app.app_context().push()
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.db')
+
+db.init_app(app)
+
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+
+from Controllers.loginController import *
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #Sign in endpoint
@@ -14,8 +43,7 @@ def signin():
 	if request.method == 'GET':
 		return render_template('signin.html')
 	else:
-		return 'New user added'
-
+		return sign_in(request)
 
 
 #Login endpoint

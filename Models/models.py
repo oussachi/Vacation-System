@@ -1,4 +1,4 @@
-from app import db
+from flask_sqlalchemy import SQLAlchemy
 
 """
 class Employee(db.Model):
@@ -69,13 +69,16 @@ class HR(db.Model):
             'telephone': self.telephone
         }
 """
+
+db = SQLAlchemy()
+
 class userLoginCredentials(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     matricule = db.Column(db.String, unique=True, nullable=False)
     hashed_password = db.Column(db.String, unique=False, nullable=False)
 
     def __repr__(self):
-        return f'User {self.matricule}'
+        return f'<User {self.matricule}>'
     
     def toJSON(self):
         return {
