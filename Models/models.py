@@ -76,9 +76,10 @@ class userLoginCredentials(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     matricule = db.Column(db.String, unique=True, nullable=False)
     hashed_password = db.Column(db.String, unique=False, nullable=False)
+    role = db.Column(db.String, unique=False, nullable=False)
 
     def __repr__(self):
-        return f'<User {self.matricule}>'
+        return f'<User {self.matricule} || Role {self.role}>'
     
     def toJSON(self):
         return {

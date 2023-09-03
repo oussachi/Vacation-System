@@ -17,17 +17,24 @@ def sign_in(request):
     try:
         matricule = request.form['matricule']
         password = request.form['password']
+        role = request.form['role']
         user = userLoginCredentials.query.filter_by(matricule=matricule).first()
         if(user == None and password):
             new_user = userLoginCredentials(
                 matricule = matricule,
-                hashed_password = hash_password(password)
+                hashed_password = hash_password(password),
+                role = role
             )
             db.session.add(new_user)
             db.session.commit()
 
             session['user'] = new_user.matricule
             session.permanent = True
+            
+            if(role == 'Manager'):
+                return redirect('/manager/home')
+            elif(role == 'GRH'):
+                return redirect('/GRH/home')
             return redirect('/employé/home')
         else:
             return render_template('/signin.html', error='User found with given matricule')
@@ -42,7 +49,12 @@ def loginFunction(request):
         user = userLoginCredentials.query.filter_by(matricule=matricule).first()
         if(user):
             hashed_input_password = hash_password(password)
-            if(hashed_input_password == user.hashed_password):  
+            if(hashed_input_password == user.hashed_password):
+                role = user.role
+                if(role == 'Manager'):
+                    return redirect('/manager/home')
+                elif(role == 'GRH'):
+                    return redirect('/GRH/home')
                 return redirect('/employé/home')
             else:
                 return render_template('login.html', error='Wrong password')
