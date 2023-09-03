@@ -7,6 +7,17 @@ from Controllers.xmlController import *
 app = Flask(__name__)
 db = SQLAlchemy()
 
+
+#Sign in endpoint
+@app.route("/signin", methods=['GET', 'POST'])
+def signin():
+	if request.method == 'GET':
+		return render_template('signin.html')
+	else:
+		return 'New user added'
+
+
+
 #Login endpoint
 @app.route("/", methods=['GET', 'POST'])
 def login():
@@ -29,7 +40,7 @@ def mes_demandes():
 	demandes = [{
 		"date_debut" : datetime.datetime.now(),
 		"date_fin" : datetime.datetime.now(),
-		"statut" : "Refused"
+		"statut" : "Accepted"
 	}]
 	return render_template("/user/demandes.html", demandes = demandes)
 
@@ -94,8 +105,10 @@ def manager_demande():
 def proposition():
 	return render_template("/manager/proposition.html")
 
+
+
 # ----------------------------------------- Admin Endpoints ------------------------------ #
 
-
+# ---------------------------------------------------------------------------------------- #
 if __name__ == '__main__':
 	app.run(debug=True)

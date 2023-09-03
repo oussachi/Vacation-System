@@ -1,5 +1,6 @@
 from app import db
 
+"""
 class Employee(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     prénom = db.Column(db.String(20), unique=False, nullable=False)
@@ -66,4 +67,19 @@ class HR(db.Model):
             'last_name': self.last_name,
             'email': self.email,
             'telephone': self.telephone
+        }
+"""
+class userLoginCredentials(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    matricule = db.Column(db.String, unique=True, nullable=False)
+    hashed_password = db.Column(db.String, unique=False, nullable=False)
+
+    def __repr__(self):
+        return f'User {self.matricule}'
+    
+    def toJSON(self):
+        return {
+            'id' : self.id,
+            'matricule' : self.matricule,
+            'hashed_password' : self.hashed_password
         }
