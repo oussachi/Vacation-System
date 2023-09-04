@@ -46,3 +46,15 @@ def deleteDemande(id):
         return redirect('/employé/mes_demandes')
     except Exception as e:
         return render_template('/user/demande.html', error=str(e))
+    
+def editDemande(request, id):
+    try:
+        demande = demandeCongé.query.filter_by(id=id).first()
+        nouvelle_date_debut = request.form['debut']
+        nouvelle_date_fin = request.form['fin']
+        demande.date_debut = nouvelle_date_debut
+        demande.date_fin = nouvelle_date_fin
+        db.session.commit()
+        return redirect('/employé/demande/<int:id>')
+    except Exception as e:
+        return render_template('/user/demande.html', error=str(e))

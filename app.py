@@ -76,6 +76,11 @@ def demande(id):
 def delete_demande(id):
 	return deleteDemande(id)
 
+@app.route("/employé/demande/<int:id>/edit", methods=['GET', 'POST'])
+def edit_demande(id):
+	if request.method == 'POST':
+		return editDemande(request, id)
+
 
 # ----------------------------------------- GRH Endpoints ------------------------------ #
 @app.route("/GRH/home")
