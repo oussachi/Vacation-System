@@ -21,12 +21,14 @@ block content %}
   />
 </div>
 <br>
+{% if demande.statut == 'Processing' %}
 <form style="float: left; margin-right: 50px;">
   <button type="Submit" class="btn btn-warning">Modifier la demande</button>
 </form>
-<form>
+<form action="/employé/demande/{{ demande.id }}/delete" method="POST">
   <button type="Submit" class="btn btn-danger">Annuler la demande</button>
 </form>
+{% endif %}
 
 {{ error }}
 {% endblock %}

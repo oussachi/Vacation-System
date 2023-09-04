@@ -64,11 +64,6 @@ def nouvelle_demande():
 
 @app.route("/employé/mes_demandes")
 def mes_demandes():
-	#demandes = [{
-	#	"date_debut" : datetime.datetime.now(),
-	#	"date_fin" : datetime.datetime.now(),
-	#	"statut" : "Processing"
-	#}]
 	return getDemandes()
 
 
@@ -76,6 +71,10 @@ def mes_demandes():
 def demande(id):
 	return getDemande(id)
 
+
+@app.post("/employé/demande/<int:id>/delete")
+def delete_demande(id):
+	return deleteDemande(id)
 
 
 # ----------------------------------------- GRH Endpoints ------------------------------ #
