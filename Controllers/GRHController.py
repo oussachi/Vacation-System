@@ -1,9 +1,21 @@
 from Models.models import *
 from flask import render_template, session, redirect
+from Controllers.xlsxController import getMatriculesByCode
+from Controllers.baseController import get_user
 
 def getPendingAccounts():
     try:
-        accounts = userLoginCredentials.query.filter_by(account_confirmed=False)
+        #accounts = userLoginCredentials.query.filter_by(account_confirmed=False)
+        code = get_user().matricule
+        accounts = []
+        matricules = getMatriculesByCode(code)
+        temps = userLoginCredentials.query.filter(
+            userLoginCredentials.matricule.in_(matricules),
+            userLoginCredentials.account_confirmed==False)
+        for temp in temps:
+            accounts.append(
+                userLoginCredentials.query.filter_by(id=temp.id).first()
+            )
         return render_template("/GRH/listeComptes.html", comptes=accounts)
     except Exception as e:
         return render_template("/GRH/listeComptes.html", error=str(e))
@@ -29,7 +41,18 @@ def approveAccount(id):
 
 def getPendingDemandes():
     try:
-        demandes = demandeCongé.query.filter_by(statut="Processing")
+        code = get_user().matricule
+        demandes = []
+        matricules = getMatriculesByCode(code)
+        #demandes = demandeCongé.query.filter_by(statut="Processing")
+        temps = demandeCongé.query.filter(
+            demandeCongé.employee_matricule.in_(matricules), 
+            demandeCongé.statut == 'Processing'
+        )
+        for temp in temps:
+            demandes.append(
+                demandeCongé.query.filter_by(id=temp.id).first()
+            )
         return render_template("/GRH/listeDemandes.html", demandes=demandes)
     except Exception as e:
         return render_template("/GRH/listeDemandes.html", error=str(e))

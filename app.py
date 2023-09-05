@@ -23,6 +23,7 @@ from Controllers.loginController import *
 from Controllers.baseController import *
 from Controllers.employeeController import *
 from Controllers.GRHController import *
+from Controllers.xlsxController import *
 
 
 # ------------------------ ENDPOINTS -------------------------------- #
@@ -49,6 +50,9 @@ def login():
 def logout():
 	return log_out()
 
+@app.route("/test")
+def test():
+	return open()
 
 # ----------------------------------------- Employee Endpoints ------------------------------ #
 
