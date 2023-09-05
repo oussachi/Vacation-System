@@ -95,6 +95,7 @@ class demandeCongé(db.Model):
     date_fin = db.Column(db.String, unique=False, nullable=False)
     statut = db.Column(db.String, unique=False, nullable=False)
     employee_matricule = db.Column(db.String, unique=False, nullable=False)
+    motif_refus = db.Column(db.String, unique=False, nullable=True)
     #employee_matricule = db.Column(db.Ineteger, db.ForeignKey('employee.matricule', nullable=False))
 
     def __repr__(self):

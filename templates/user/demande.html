@@ -38,4 +38,9 @@ block content %}
 <form action="/employé/demande/{{ demande.id }}/delete" method="POST">
   <button type="Submit" class="btn btn-danger">Annuler la demande</button>
 </form>
+
+{% elif demande.statut == 'Refused' %}
+
+<h2>Motif : {{ demande.motif_refus }}</h2>
+
 {% endif %} {{ error }} {% endblock %}

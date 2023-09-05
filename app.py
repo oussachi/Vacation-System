@@ -21,7 +21,7 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 from Controllers.loginController import *
 from Controllers.baseController import *
-from Controllers.demandeController import *
+from Controllers.employeeController import *
 from Controllers.GRHController import *
 
 
@@ -99,27 +99,13 @@ def edit_demande(id):
 def home_GRH():
 	return render_template("/GRH/profil.html")
 
-@app.route("/GRH/demandes")
+@app.route("/GRH/demandes_congé")
 def liste_demande():
-	demandes = [{
-		"date_debut" : datetime.datetime.now(),
-		"date_fin" : datetime.datetime.now(),
-		"statut" : "Processing"
-	}, {
-		"date_debut" : datetime.datetime.now(),
-		"date_fin" : datetime.datetime.now(),
-		"statut" : "Processing"
-	}]
-	return render_template("/GRH/listeDemandes.html", demandes=demandes)
+	return getPendingDemandes()
 
-@app.route("/GRH/details_demande")
-def details_demande():
-	return render_template("/GRH/detailsDemande.html")
-
-@app.route("/GRH/motif_refus")
-def motif_refus():
-	return render_template("/GRH/motif.html")
-
+@app.route("/GRH/demande_congé/<int:id>")
+def details_demande(id):
+	return getPendingDemande(id)
 
 @app.get("/GRH/demandes_compte")
 def demandes_compte():
@@ -133,6 +119,9 @@ def demande_compte(id):
 def approuver_compte(id):
 	return approveAccount(id)
 
+@app.route("/GRH/demande_congé/<int:id>/refuser", methods=['GET', 'POST'])
+def refuser_demande(id):
+	return refuseDemande(request, id)
 
 
 # ----------------------------------------- Manager Endpoints ------------------------------ #

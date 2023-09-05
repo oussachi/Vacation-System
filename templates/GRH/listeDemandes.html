@@ -11,11 +11,11 @@
   </thead>
   <tbody>
     {% for demande in demandes %}
-    <tr class="table-secondary" onclick="window.location='details_demande';" style="cursor: pointer;">
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
+    <tr class="table-secondary" onclick="window.location='demande_congé/{{ demande.id }}';" style="cursor: pointer;">
+      <td>{{ demande.employee_matricule }}</td>
+      <td>{{ demande.date_debut }}</td>
+      <td>{{ demande.date_fin }}</td>
+      <td>Valeur</td>
     </tr>
     {% endfor %}
   </tbody>

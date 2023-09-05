@@ -1,7 +1,31 @@
 {% extends '/GRH/base.html' %} 
 {% block title %} Demande {% endblock %} 
 {% block content %}
-<h1>details demande</h1>
+<div class="form-group">
+  <label class="form-label mt-4" for="readOnlyInput">Date de début</label>
+  <input
+    class="form-control"
+    id="readOnlyInput"
+    type="text"
+    value={{
+    demande.date_debut
+    }}
+    readonly=""
+  />
+</div>
+<div class="form-group">
+  <label class="form-label mt-4" for="readOnlyInput">Date de fin</label>
+  <input
+    class="form-control"
+    id="readOnlyInput"
+    type="text"
+    value={{
+    demande.date_fin
+    }}
+    readonly=""
+  />
+</div>
+<br />
 <div style="float:right; margin-right: 50px; width: 500px;">
   <div style="float: left;">
     <form>
@@ -9,9 +33,12 @@
     </form>
   </div>
   <div style="float: right;">
-    <form action="/GRH/motif_refus">
-      <button type="submit" class="btn btn-danger">Refuser la demande</button>
-    </form>
+      <button type="submit" class="btn btn-danger" 
+      onclick="window.location='/GRH/demande_congé/{{ demande.id }}/refuser';">
+        Refuser la demande
+      </button>
   </div>
 </div>
+
+{{ error }}
 {% endblock %}
