@@ -8,6 +8,8 @@
     <base href="http://localhost:5000/employé/">
   </head>
   <body>
+    <form style="display: none;" action="/logout" method="POST" id="myForm">
+    </form>
     <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
       <div class="container-fluid">
         <div>
@@ -25,7 +27,7 @@
               <a class="nav-link" href="home">Profil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Log Out</a>
+              <button type="Submit" form="myForm" class="nav-link">LOG OUT</a>
             </li>
           </ul>
         </div>

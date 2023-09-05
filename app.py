@@ -43,6 +43,10 @@ def login():
 		return render_template('login.html')
 	else:
 		return loginFunction(request)
+	
+@app.post("/logout")
+def logout():
+	return log_out()
 
 
 # ----------------------------------------- Employee Endpoints ------------------------------ #

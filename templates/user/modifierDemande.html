@@ -17,11 +17,29 @@
   </div>
   <div class="form-group">
     <label class="form-label mt-4">Date de début</label>
-    <input type="date" name="debut" class="form-control" value={{ demande.date_debut }}/>
+    <input
+      type="text"
+      onfocus="(this.type='date')"
+      onblur="(this.type='text')"
+      name="debut"
+      class="form-control"
+      value={{
+      demande.date_debut
+      }}
+    />
   </div>
   <div class="form-group">
     <label class="form-label mt-4">Date de fin</label>
-    <input type="date" name="fin" class="form-control" value={{ demande.date_fin }}/>
+    <input
+      type="text"
+      onfocus="(this.type='date')"
+      onblur="(this.type='text')"
+      name="fin"
+      class="form-control"
+      value={{
+      demande.date_fin
+      }}
+    />
   </div>
   <br />
   <button type="submit" class="btn btn-primary">Submit</button>

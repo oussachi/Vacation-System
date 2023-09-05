@@ -62,3 +62,11 @@ def loginFunction(request):
         return render_template('login.html', error='No user found for given matricule')
     except Exception as e:
         return render_template('login.html', error=str(e))
+    
+def log_out():
+    try:
+        for key in list(session.keys()):
+            session.pop(key)
+        return redirect("/")
+    except Exception as e:
+        return redirect("/")
