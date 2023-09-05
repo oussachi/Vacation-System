@@ -22,6 +22,7 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 from Controllers.loginController import *
 from Controllers.baseController import *
 from Controllers.demandeController import *
+from Controllers.GRHController import *
 
 
 # ------------------------ ENDPOINTS -------------------------------- #
@@ -92,6 +93,8 @@ def edit_demande(id):
 
 
 # ----------------------------------------- GRH Endpoints ------------------------------ #
+
+
 @app.route("/GRH/home")
 def home_GRH():
 	return render_template("/GRH/profil.html")
@@ -118,8 +121,23 @@ def motif_refus():
 	return render_template("/GRH/motif.html")
 
 
+@app.get("/GRH/demandes_compte")
+def demandes_compte():
+	return getPendingAccounts()
+
+@app.get("/GRH/demande_compte/<int:id>")
+def demande_compte(id):
+	return getPendingAccount(id)
+
+@app.post("/GRH/demande_compte/<int:id>/approuver")
+def approuver_compte(id):
+	return approveAccount(id)
+
+
 
 # ----------------------------------------- Manager Endpoints ------------------------------ #
+
+
 @app.route("/manager/home")
 def home_manager():
 	return render_template('/manager/profil.html')

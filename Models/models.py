@@ -77,6 +77,7 @@ class userLoginCredentials(db.Model):
     matricule = db.Column(db.String, unique=True, nullable=False)
     hashed_password = db.Column(db.String, unique=False, nullable=False)
     role = db.Column(db.String, unique=False, nullable=False)
+    account_confirmed = db.Column(db.Boolean, unique=False, nullable=False)
 
     def __repr__(self):
         return f'<User {self.matricule} || Role {self.role}>'
