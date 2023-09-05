@@ -1,8 +1,7 @@
-{% extends '/user/base.html' %}
-{% block title %} Nouvelle Demande {% endblock %}
-{% block content %}
-<form action="/employé/nouvelle_demande" method="POST">
-  <legend>Nouvelle demande de congé</legend>
+{% extends '/user/base.html' %} {% block title %} Modifier Demande {% endblock
+%} {% block content %}
+<form action="/employé/demande/{{ demande.id }}/edit" method="POST">
+  <legend>Modifier la demande de congé</legend>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Matricule</label>
     <div class="col-sm-10">
@@ -18,15 +17,14 @@
   </div>
   <div class="form-group">
     <label class="form-label mt-4">Date de début</label>
-    <input type="date" name="debut" class="form-control" />
+    <input type="date" name="debut" class="form-control" value={{ demande.date_debut }}/>
   </div>
   <div class="form-group">
     <label class="form-label mt-4">Date de fin</label>
-    <input type="date" name="fin" class="form-control" />
+    <input type="date" name="fin" class="form-control" value={{ demande.date_fin }}/>
   </div>
   <br />
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
-{{ error }}
-{% endblock %}
+{{ error }} {% endblock %}

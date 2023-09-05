@@ -55,6 +55,6 @@ def editDemande(request, id):
         demande.date_debut = nouvelle_date_debut
         demande.date_fin = nouvelle_date_fin
         db.session.commit()
-        return redirect('/employé/demande/<int:id>')
+        return redirect(f'/employé/demande/{demande.id}')
     except Exception as e:
         return render_template('/user/demande.html', error=str(e))

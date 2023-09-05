@@ -6,7 +6,7 @@ block content %}
     class="form-control"
     id="readOnlyInput"
     type="text"
-    placeholder="{{"
+    placeholder={{
     demande.date_debut
     }}
     readonly=""
@@ -18,7 +18,7 @@ block content %}
     class="form-control"
     id="readOnlyInput"
     type="text"
-    placeholder="{{"
+    placeholder={{
     demande.date_fin
     }}
     readonly=""
@@ -26,13 +26,15 @@ block content %}
 </div>
 <br />
 {% if demande.statut == 'Processing' %}
-<form
+
+<button
   style="float: left; margin-right: 50px"
-  action="/employé/demande/{{ demande.id }}/delete"
-  method="POST"
+  class="btn btn-warning"
+  onclick="window.location='demande/{{ demande.id }}/edit';"
 >
-  <button type="Submit" class="btn btn-warning">Modifier la demande</button>
-</form>
+  Modifier la demande
+</button>
+
 <form action="/employé/demande/{{ demande.id }}/delete" method="POST">
   <button type="Submit" class="btn btn-danger">Annuler la demande</button>
 </form>

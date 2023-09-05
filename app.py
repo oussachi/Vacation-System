@@ -76,10 +76,15 @@ def demande(id):
 def delete_demande(id):
 	return deleteDemande(id)
 
+
 @app.route("/employé/demande/<int:id>/edit", methods=['GET', 'POST'])
 def edit_demande(id):
-	if request.method == 'POST':
+	if (request.method == 'POST'):
 		return editDemande(request, id)
+	else:
+		demande = demandeCongé.query.filter_by(id=id).first()
+		user = get_user()
+		return render_template("/user/modifierDemande.html", user=user, demande=demande)
 
 
 # ----------------------------------------- GRH Endpoints ------------------------------ #

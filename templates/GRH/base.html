@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>{% block title %} {% endblock %}</title>
-    <link rel="stylesheet" href="../../static/bootstrap.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}" />
     <base href="http://localhost:5000/GRH/">
   </head>
   <body>
