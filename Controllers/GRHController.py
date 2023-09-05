@@ -1,6 +1,6 @@
 from Models.models import *
 from flask import render_template, session, redirect
-from Controllers.xlsxController import getMatriculesByCode
+from Controllers.xlsxController import *
 from Controllers.baseController import get_user
 
 def getPendingAccounts():
@@ -79,3 +79,8 @@ def refuseDemande(request, id):
             return render_template("/GRH/motif.html", demande=demande)
     except Exception as e:
         return render_template("/GRH/detailsDemande.html", demande=demande ,error=str(e))
+    
+def getGRH():
+    matricule = session['user']
+    user = getGRHByMatricule(matricule)
+    return render_template("/GRH/profil.html", user=user)

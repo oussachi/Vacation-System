@@ -50,25 +50,17 @@ def login():
 def logout():
 	return log_out()
 
-@app.route("/test")
-def test():
-	return open()
-
 # ----------------------------------------- Employee Endpoints ------------------------------ #
+
 
 @app.route('/employé/home')
 def home_user():
-	user = get_user()
-	return render_template('/user/profil.html', user=user)
+	return getEmployee()
 
 
 @app.route("/employé/nouvelle_demande", methods=["GET", "POST"])
 def nouvelle_demande():
-	user = get_user()
-	if (request.method == 'GET'):
-		return render_template("/user/nouvelleDemande.html", user=user)
-	else:
-		return createDemande(request, user)
+	return createDemande(request)
 
 
 @app.route("/employé/mes_demandes")
@@ -101,7 +93,7 @@ def edit_demande(id):
 
 @app.route("/GRH/home")
 def home_GRH():
-	return render_template("/GRH/profil.html")
+	return getGRH()
 
 @app.route("/GRH/demandes_congé")
 def liste_demande():

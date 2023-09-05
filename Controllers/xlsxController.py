@@ -14,6 +14,7 @@ def getRow(sheetName, rowNumber):
     for i in range(1, max_col + 1):
         cell_obj = sheet.cell(row = rowNumber, column = i)
         rowValues.append(cell_obj.value)
+    return rowValues
 
 
 def getColumn(sheetName, columnNumber):
@@ -24,7 +25,18 @@ def getColumn(sheetName, columnNumber):
     for i in range(2, max_row + 1):
         cell_obj = sheet.cell(row = i, column = columnNumber)
         columnValues.appendrowValues(cell_obj.value)
+    return columnValues
 
+
+def getRowNumberOfSearch(sheetName, columnNumber, term):
+    sheet = open_sheet(sheetName)
+    max_row = sheet.max_row
+
+    for i in range(2, max_row + 1):
+        cell_obj = sheet.cell(row=i, column=columnNumber)
+        if(cell_obj.value == str(term)):
+            return i
+    return None
 
 def searchByColumn(sheetName, columnNumber, searchedValue):
     result = []
@@ -33,8 +45,9 @@ def searchByColumn(sheetName, columnNumber, searchedValue):
 
     for i in range(2, max_row + 1):
         cell_obj = sheet.cell(row=i, column=columnNumber)
-        if(cell_obj.value == searchedValue):
+        if(cell_obj.value == str(searchedValue)):
             result.append(getRow(sheetName, i))
+    return result
 
 
 
@@ -51,3 +64,12 @@ def getMatriculesByCode(code):
             matricule = sheet.cell(row=i, column=1)
             matricules.append(matricule.value)
     return matricules
+
+
+def getUserByMatricule(matricule):
+    user_data = searchByColumn("Salariés", 1, matricule)[0]
+    return user_data
+
+def getGRHByMatricule(matricule):
+    user_data = searchByColumn("GRH", 1, matricule)[0]
+    return user_data
