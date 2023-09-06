@@ -14,7 +14,7 @@
     {% for demande in demandes %}
     <tr
       class="table-secondary"
-      onclick="window.location='/manager/demande';"
+      onclick="window.location='/manager/demande/{{ demande.id }}';"
       style="cursor: pointer"
     >
       <td>{{ demande.employee_matricule }}</td>

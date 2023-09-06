@@ -1,17 +1,45 @@
 {% extends '/manager/base.html' %} 
 {% block title %} Demande {% endblock %} 
 {% block content %}
-<h1>details demande</h1>
-<div style="float:right; margin-right: 50px; width: 500px;">
+<div class="form-group">
+  <label class="form-label mt-4" for="readOnlyInput">Date de début</label>
+  <input
+    class="form-control"
+    id="readOnlyInput"
+    type="text"
+    value={{
+    demande.date_debut
+    }}
+    readonly=""
+  />
+</div>
+
+<div class="form-group">
+  <label class="form-label mt-4" for="readOnlyInput">Date de fin</label>
+  <input
+    class="form-control"
+    id="readOnlyInput"
+    type="text"
+    value={{
+    demande.date_fin
+    }}
+    readonly=""
+  />
+</div>
+<br />
+
+<div style="float:right; margin-right: 50px; width: 600px;">
   <div style="float: left;">
-    <form>
+    <form action="/manager/demande/{{ demande.id }}/approuver" method="POST">
       <button type="submit" class="btn btn-success">Accepter la demande</button>
     </form>
   </div>
   <div style="float: right;">
-    <form action="/manager/demande/proposition">
-      <button type="submit" class="btn btn-danger">Proposer une nouvelle date</button>
+    <form action="/manager/demande/{{ demande.id }}/proposition">
+      <button type="submit" class="btn btn-danger" style="margin-left: 20px;">Proposer une nouvelle date</button>
     </form>
   </div>
 </div>
+
+{{ error }}
 {% endblock %}

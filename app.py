@@ -133,14 +133,19 @@ def home_manager():
 def manager_demandes():
 	return getPendingDemandes_Manager()
 
-@app.route("/manager/demande")
-def manager_demande():
-	return render_template("/manager/demande.html")
 
-@app.route("/manager/demande/proposition")
+@app.route("/manager/demande/<int:id>")
+def manager_demande(id):
+	return getPendingDemande_Manager(id)
+
+
+@app.route("/manager/demande/<int:id>/proposition")
 def proposition():
 	return render_template("/manager/proposition.html")
 
+@app.post("/manager/demande/<int:id>/approuver")
+def approuver_demande_manager(id):
+	return acceptDemande_Manager(id)
 
 
 # ----------------------------------------- Admin Endpoints ------------------------------ #

@@ -24,3 +24,20 @@ def getPendingDemandes_Manager():
         return render_template("/manager/listeDemandes.html", demandes=demandes)
     except Exception as e:
         return render_template("/manager/listeDemandes.html", error=str(e))
+    
+def getPendingDemande_Manager(id):
+    try:
+        demande = demandeCongé.query.filter_by(id=id).first()
+        return render_template("/manager/demande.html", demande=demande)
+    except Exception as e:
+        return render_template("/manager/demande.html", error=str(e))
+    
+def acceptDemande_Manager(id):
+    try:
+        demande = demandeCongé.query.filter_by(id=id).first()
+        demande.statut = "Accepted By Manager"
+        db.session.commit()
+        return render_template("/messagePage.html", title="Demande Acceptée",
+                               message=f"La demande de congé d'employé {demande.employee_matricule} a été acceptée")
+    except Exception as e:
+        return render_template("/manager/demande.html", error=str(e))
