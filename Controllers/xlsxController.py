@@ -53,13 +53,27 @@ def searchByColumn(sheetName, columnNumber, searchedValue):
 
 # ---------------------------------- Case specific functions ------------------------------- #
 
-def getMatriculesByCode(code):
+def getEmployeesMatriculesByGRHCode(code):
     matricules = []
     sheet = open_sheet("Salariés")
     max_row = sheet.max_row
 
+    # Column 3 is the GRH column
     for i in range(2, max_row + 1):
         cell_obj = sheet.cell(row=i, column=3)
+        if(cell_obj.value == str(code)):
+            matricule = sheet.cell(row=i, column=1)
+            matricules.append(matricule.value)
+    return matricules
+
+def getEmployeesMatriculesByManagerCode(code):
+    matricules = []
+    sheet = open_sheet("Salariés")
+    max_row = sheet.max_row
+
+    # Column 4 is the Manager column
+    for i in range(2, max_row + 1):
+        cell_obj = sheet.cell(row=i, column=4)
         if(cell_obj.value == str(code)):
             matricule = sheet.cell(row=i, column=1)
             matricules.append(matricule.value)
@@ -72,4 +86,8 @@ def getUserByMatricule(matricule):
 
 def getGRHByMatricule(matricule):
     user_data = searchByColumn("GRH", 1, matricule)[0]
+    return user_data
+
+def getManagerByMatricule(matricule):
+    user_data = searchByColumn("Managers", 1, matricule)[0]
     return user_data

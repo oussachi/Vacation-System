@@ -17,12 +17,14 @@
       onclick="window.location='/manager/demande';"
       style="cursor: pointer"
     >
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
+      <td>{{ demande.employee_matricule }}</td>
+      <td>{{ demande.date_debut }}</td>
+      <td>{{ demande.date_fin }}</td>
+      <td>Value</td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
+
+{{ error }}
 {% endblock %}

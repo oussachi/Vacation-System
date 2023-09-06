@@ -24,6 +24,7 @@ from Controllers.baseController import *
 from Controllers.employeeController import *
 from Controllers.GRHController import *
 from Controllers.xlsxController import *
+from Controllers.managerController import *
 
 
 # ------------------------ ENDPOINTS -------------------------------- #
@@ -125,21 +126,12 @@ def refuser_demande(id):
 
 @app.route("/manager/home")
 def home_manager():
-	return render_template('/manager/profil.html')
+	return getManager()
 
 
 @app.route("/manager/demandes")
 def manager_demandes():
-	demandes = [{
-		"date_debut" : datetime.datetime.now(),
-		"date_fin" : datetime.datetime.now(),
-		"statut" : "Processing"
-	}, {
-		"date_debut" : datetime.datetime.now(),
-		"date_fin" : datetime.datetime.now(),
-		"statut" : "Processing"
-	}]
-	return render_template('/manager/listeDemandes.html', demandes=demandes)
+	return getPendingDemandes_Manager()
 
 @app.route("/manager/demande")
 def manager_demande():

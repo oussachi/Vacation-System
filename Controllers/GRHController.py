@@ -8,7 +8,7 @@ def getPendingAccounts():
         #accounts = userLoginCredentials.query.filter_by(account_confirmed=False)
         code = get_user().matricule
         accounts = []
-        matricules = getMatriculesByCode(code)
+        matricules = getEmployeesMatriculesByGRHCode(code)
         temps = userLoginCredentials.query.filter(
             userLoginCredentials.matricule.in_(matricules),
             userLoginCredentials.account_confirmed==False)
@@ -43,7 +43,7 @@ def getPendingDemandes():
     try:
         code = get_user().matricule
         demandes = []
-        matricules = getMatriculesByCode(code)
+        matricules = getEmployeesMatriculesByGRHCode(code)
         #demandes = demandeCongé.query.filter_by(statut="Processing")
         temps = demandeCongé.query.filter(
             demandeCongé.employee_matricule.in_(matricules), 
@@ -64,7 +64,8 @@ def getPendingDemande(id):
         return render_template("/GRH/detailsDemande.html", demande=demande)
     except Exception as e:
         return render_template("/GRH/detailsDemande.html", error=str(e))
-    
+
+
 def refuseDemande(request, id):
     try:
         demande = demandeCongé.query.filter_by(id=id).first()
@@ -79,6 +80,7 @@ def refuseDemande(request, id):
             return render_template("/GRH/motif.html", demande=demande)
     except Exception as e:
         return render_template("/GRH/detailsDemande.html", demande=demande ,error=str(e))
+
     
 def getGRH():
     matricule = session['user']

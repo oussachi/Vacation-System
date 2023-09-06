@@ -55,13 +55,16 @@ def sign_in(request):
                 role = role,
                 account_confirmed = False
             )
-            if (role=="GRH"):
+            if (role!="Employé"):
                 new_user.account_confirmed = True
                 session['user'] = new_user.matricule
                 session.permanent = True
                 db.session.add(new_user)
                 db.session.commit()
-                return redirect('/GRH/home')
+                if(role=='GRH'):
+                    return redirect('/GRH/home')
+                else:
+                    return redirect('/manager/home')
             db.session.add(new_user)
             db.session.commit()
 
