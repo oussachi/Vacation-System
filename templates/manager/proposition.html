@@ -14,22 +14,22 @@
       onclick="window.location='/manager/demande';"
       style="cursor: pointer"
     >
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
+      <td>{{ demande.employee_matricule }}</td>
+      <td>{{ demande.date_debut }}</td>
+      <td>{{ demande.date_fin }}</td>
     </tr>
   </tbody>
 </table>
 <br />
-<form>
+<form action="/manager/demande/{{ demande.id }}/proposition" method="POST">
   <div style="width: 100%; overflow: hidden">
     <div class="form-group" style="float: left; padding-left: 100px">
       <label class="col-form-label mt-4">Date de début</label>
-      <input type="date" class="form-control" style="width: 400px" />
+      <input type="date" class="form-control" style="width: 400px" name="debut" />
     </div>
     <div class="form-group" style="float: right; padding-right: 100px">
       <label class="col-form-label mt-4">Date de fin</label>
-      <input type="date" class="form-control" style="width: 400px" />
+      <input type="date" class="form-control" style="width: 400px" name="fin" />
     </div>
   </div>
   <br />

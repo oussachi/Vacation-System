@@ -46,14 +46,14 @@ def getPendingDemandes():
         matricules = getEmployeesMatriculesByGRHCode(code)
         #demandes = demandeCongé.query.filter_by(statut="Processing")
         temps = demandeCongé.query.filter(
-            demandeCongé.employee_matricule.in_(matricules), 
-            demandeCongé.statut == 'Processing'
+            demandeCongé.employee_matricule.in_(matricules),
+            demandeCongé.statut == 'Accepted By Manager'
         )
         for temp in temps:
             demandes.append(
                 demandeCongé.query.filter_by(id=temp.id).first()
             )
-        return render_template("/GRH/listeDemandes.html", demandes=demandes)
+        return render_template("/GRH/listeDemandes.html", demandes=reversed(demandes))
     except Exception as e:
         return render_template("/GRH/listeDemandes.html", error=str(e))
     

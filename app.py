@@ -139,9 +139,10 @@ def manager_demande(id):
 	return getPendingDemande_Manager(id)
 
 
-@app.route("/manager/demande/<int:id>/proposition")
-def proposition():
-	return render_template("/manager/proposition.html")
+@app.route("/manager/demande/<int:id>/proposition", methods=['GET', 'POST'])
+def proposition(id):
+	return proposerDate(request, id)
+
 
 @app.post("/manager/demande/<int:id>/approuver")
 def approuver_demande_manager(id):

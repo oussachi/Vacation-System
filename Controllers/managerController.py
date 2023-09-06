@@ -41,3 +41,19 @@ def acceptDemande_Manager(id):
                                message=f"La demande de congé d'employé {demande.employee_matricule} a été acceptée")
     except Exception as e:
         return render_template("/manager/demande.html", error=str(e))
+    
+def proposerDate(request, id):
+    try:
+        demande = demandeCongé.query.filter_by(id=id).first()
+        if(request.method == 'POST'):
+            nouvelle_date_debut = request.form['debut']
+            nouvelle_date_fin = request.form['fin']
+            demande.date_debut = nouvelle_date_debut
+            demande.date_fin = nouvelle_date_fin
+            demande.statut = "Modified By Manager"
+            db.session.commit()
+            return redirect(f"/manager/demande/{demande.id}")
+        else:
+            return render_template("/manager/proposition.html", demande=demande)
+    except Exception as e:
+        return render_template("/manager/demande.html", error=str(e))
