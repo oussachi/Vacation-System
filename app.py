@@ -25,6 +25,7 @@ from Controllers.employeeController import *
 from Controllers.GRHController import *
 from Controllers.xlsxController import *
 from Controllers.managerController import *
+from Controllers.adminController import *
 
 
 # ------------------------ ENDPOINTS -------------------------------- #
@@ -153,6 +154,20 @@ def approuver_demande_manager(id):
 
 
 # ----------------------------------------- Admin Endpoints ------------------------------ #
+
+@app.route("/admin/home")
+def get_admin():
+	return render_template("/admin/profil.html")
+
+
+@app.route("/admin/fonctions")
+def fonctions():
+	return render_template("/admin/fonctions.html")
+
+
+@app.route("/admin/users")
+def get_users():
+	return getAllUsers()
 
 # ---------------------------------------------------------------------------------------- #
 if __name__ == '__main__':

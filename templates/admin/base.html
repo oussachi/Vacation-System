@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}" />
+    <base href="http://localhost:5000/admin/">
+  </head>
+  <body>
+    <form style="display: none;" action="/logout" method="POST" id="myForm">
+    </form>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+      <div class="container-fluid">
+        <div>
+            <img src="/static/g22.png" width="200" height="60">
+        </div>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="fonctions">Fonctions</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="home">Profil</a>
+            </li>
+            <li class="nav-item">
+              <button type="Submit" form="myForm" class="nav-link">LOG OUT</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% block content %} {% endblock %}
+  </body>
+</html>

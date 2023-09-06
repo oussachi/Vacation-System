@@ -115,6 +115,8 @@ def loginFunction(request):
                 session['user'] = user.matricule
                 session.permanent = True
                 role = user.role
+                if(role == 'Admin'):
+                    return redirect('/admin/home')
                 if(role == 'Manager'):
                     return redirect('/manager/home')
                 elif(role == 'GRH'):

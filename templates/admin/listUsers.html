@@ -1,0 +1,26 @@
+{% extends '/admin/base.html' %}
+{% block title %} Fonctions {% endblock %}
+{% block content %}
+<table class="table table-hover" style="width: 100%">
+    <thead>
+      <tr>
+        <th scope="col">Matriucle</th>
+        <th scope="col">Nom et prénom</th>
+        <th scope="col">Poste</th>
+        <th scope="col">Site</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+      <tr class="table-secondary" onclick="window.location='user_profil/{{ user[0] }}';" style="cursor: pointer;">
+        <td>{{ user[0] }}</td>
+        <td>{{ user[1] }}</td>
+        <td>Valeur</td>
+        <td>Valeur</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{{ error }}
+{% endblock %}
