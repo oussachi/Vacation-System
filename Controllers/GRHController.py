@@ -1,7 +1,7 @@
 from Models.models import *
 from flask import render_template, session, redirect
 from Controllers.xlsxController import *
-from Controllers.baseController import get_user
+from Controllers.baseController import *
 
 def getPendingAccounts():
     try:
@@ -98,3 +98,32 @@ def getGRH():
     matricule = session['user']
     user = getGRHByMatricule(matricule)
     return render_template("/GRH/profil.html", user=user)
+
+
+def getAccountFunctions():
+    return render_template("/GRH/gestionComptes.html")
+
+
+def createAccount(request):
+    try:
+        if(request.method == 'GET'):
+            return render_template("/GRH/nouveauCompte.html")
+        else:
+            matricule = request.form['matricule']
+            password = request.form['password']
+            role = request.form['role']
+            user = userLoginCredentials.query.filter_by(matricule=matricule).first()
+            if(user == None and password):
+                new_user = userLoginCredentials(
+                    matricule = matricule,
+                    hashed_password = hash_password(password),
+                    role = role,
+                    account_confirmed = True
+                )
+                db.session.add(new_user)
+                db.session.commit()
+
+                return render_template("/messagePage.html", title="Création de compte", 
+                                    message=f"Le compte d'employé {matricule} a été créé avec le mot de passe {password}")
+    except Exception as e:
+        return render_template("/GRH/nouveauCompte.html", error=str(e))

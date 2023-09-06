@@ -1,0 +1,24 @@
+{% extends '/GRH/base.html' %} {% block title %} Gestion des comptes {% endblock %} {% block
+content %}
+<br>
+<div class="d-grid gap-2">
+  <button
+    class="btn btn-lg btn-primary"
+    type="button"
+    onclick="window.location='demandes_compte';"
+    style="cursor: pointer"
+  >
+    Liste des demandes de compte
+  </button>
+  <br>
+  <div class="d-grid gap-2">
+    <button
+      class="btn btn-lg btn-primary"
+      type="button"
+      onclick="window.location='creation_compte';"
+      style="cursor: pointer"
+    >
+      Création d'un compte
+    </button>
+</div>
+{% endblock %}

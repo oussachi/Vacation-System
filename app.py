@@ -34,20 +34,15 @@ from Controllers.adminController import *
 #Sign in endpoint
 @app.route("/signin", methods=['GET', 'POST'])
 def signin():
-	if request.method == 'GET':
-		return render_template('signin.html')
-	else:
-		return sign_in(request)
+	return sign_in(request)
 
 
 #Login endpoint
 @app.route("/", methods=['GET', 'POST'])
 def login():
-	if request.method == 'GET':
-		return render_template('login.html')
-	else:
-		return loginFunction(request)
-	
+	return loginFunction(request)
+
+#Logout endpoint	
 @app.post("/logout")
 def logout():
 	return log_out()
@@ -111,6 +106,14 @@ def refuser_demande(id):
 @app.post("/GRH/demande_congé/<int:id>/approuver")
 def approuver_demande(id):
 	return acceptDemande(request, id)
+
+@app.route("/GRH/gestion_comptes")
+def gestion_comptes():
+	return getAccountFunctions()
+
+@app.route("/GRH/creation_compte", methods=['GET', 'POST'])
+def creation_compte():
+	return createAccount(request)
 
 @app.get("/GRH/demandes_compte")
 def demandes_compte():
