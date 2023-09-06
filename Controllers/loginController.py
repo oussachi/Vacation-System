@@ -32,7 +32,8 @@ def sign_in(request):
                 db.session.commit()
 
                 return render_template("/messagePage.html", title="Sign In", 
-                                    message="Your account is awaiting approval")
+                                    message="Your account is awaiting approval",
+                                    link="/signin")
             else:
                 return render_template('/signin.html', error='User found with given matricule')
         else:
@@ -50,7 +51,8 @@ def loginFunction(request):
             user = userLoginCredentials.query.filter_by(matricule=matricule).first()
             if(not user.account_confirmed):
                 return render_template("/messagePage.html", title="Login", 
-                                    message="Your account hasn't been approved yet")
+                                    message="Your account hasn't been approved yet",
+                                    link="/signin")
             if(user):
                 hashed_input_password = hash_password(password)
                 if(hashed_input_password == user.hashed_password):

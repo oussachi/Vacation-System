@@ -38,7 +38,8 @@ def acceptDemande_Manager(id):
         demande.statut = "Accepted By Manager"
         db.session.commit()
         return render_template("/messagePage.html", title="Demande Acceptée",
-                               message=f"La demande de congé d'employé {demande.employee_matricule} a été acceptée")
+                               message=f"La demande de congé d'employé {demande.employee_matricule} a été acceptée",
+                               link="/manager/home")
     except Exception as e:
         return render_template("/manager/demande.html", error=str(e))
     
