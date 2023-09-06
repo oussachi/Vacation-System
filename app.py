@@ -81,12 +81,11 @@ def delete_demande(id):
 
 @app.route("/employé/demande/<int:id>/edit", methods=['GET', 'POST'])
 def edit_demande(id):
-	if (request.method == 'POST'):
-		return editDemande(request, id)
-	else:
-		demande = demandeCongé.query.filter_by(id=id).first()
-		user = get_user()
-		return render_template("/user/modifierDemande.html", user=user, demande=demande)
+	return editDemande(request, id)
+
+@app.post("/employé/demande/<int:id>/accepter_proposition")
+def accepter_proposition(id):
+	return acceptProposition(id)
 
 
 # ----------------------------------------- GRH Endpoints ------------------------------ #
@@ -104,6 +103,14 @@ def liste_demande():
 def details_demande(id):
 	return getPendingDemande(id)
 
+@app.route("/GRH/demande_congé/<int:id>/refuser", methods=['GET', 'POST'])
+def refuser_demande(id):
+	return refuseDemande(request, id)
+
+@app.post("/GRH/demande_congé/<int:id>/approuver")
+def approuver_demande(id):
+	return acceptDemande(request, id)
+
 @app.get("/GRH/demandes_compte")
 def demandes_compte():
 	return getPendingAccounts()
@@ -115,10 +122,6 @@ def demande_compte(id):
 @app.post("/GRH/demande_compte/<int:id>/approuver")
 def approuver_compte(id):
 	return approveAccount(id)
-
-@app.route("/GRH/demande_congé/<int:id>/refuser", methods=['GET', 'POST'])
-def refuser_demande(id):
-	return refuseDemande(request, id)
 
 
 # ----------------------------------------- Manager Endpoints ------------------------------ #

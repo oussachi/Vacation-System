@@ -80,6 +80,18 @@ def refuseDemande(request, id):
             return render_template("/GRH/motif.html", demande=demande)
     except Exception as e:
         return render_template("/GRH/detailsDemande.html", demande=demande ,error=str(e))
+    
+
+def acceptDemande(request, id):
+    try:
+        demande = demandeCongé.query.filter_by(id=id).first()
+        if(request.method=='POST'):
+            demande.statut = 'Accepted'
+            db.session.commit()
+            return render_template("/messagePage.html", title="Refus de demande", 
+                                message=f"Demande d'employé {demande.employee_matricule} a été acceptée")
+    except Exception as e:
+        return render_template("/GRH/detailsDemande.html", demande=demande ,error=str(e))
 
     
 def getGRH():

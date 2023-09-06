@@ -16,8 +16,8 @@ block content %}
         <td>{{ demande.date_fin }}</td>
         <td>{{ demande.statut }}</td>
       </tr>
-      {% elif demande.statut == 'Refused' %}
-      <tr class="table-danger">
+      {% elif demande.statut == 'Refused'%}
+      <tr class="table-danger" onclick="window.location='demande/{{ demande.id }}';" style="cursor: pointer;">
         <td>{{ demande.date_debut }}</td>
         <td>{{ demande.date_fin }}</td>
         <td>{{ demande.statut }}</td>

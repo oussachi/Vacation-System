@@ -2,6 +2,7 @@ from Models.models import db, demandeCongé
 from Controllers.xlsxController import *
 from Controllers.baseController import *
 from flask import session, redirect, render_template
+from sqlalchemy import desc
 
 def createDemande(request):
     try:
@@ -30,7 +31,7 @@ def createDemande(request):
 def getDemandes():
     try:
         user_matricule = session['user']
-        demandes = demandeCongé.query.filter_by(employee_matricule=user_matricule)
+        demandes = demandeCongé.query.filter_by(employee_matricule=user_matricule).order_by(desc(demandeCongé.id))
         return render_template('/user/demandes.html', demandes=demandes)
     except Exception as e:
         return render_template('/user/demandes.html', error=str(e))
@@ -74,3 +75,12 @@ def getEmployee():
     matricule = session['user']
     user = getUserByMatricule(matricule)
     return render_template("/user/profil.html", user=user)
+
+def acceptProposition(id):
+    try:
+        demande = demandeCongé.query.filter_by(id=id).first()
+        demande.statut = 'Accepted By Manager'
+        db.session.commit()
+        return redirect("/employé/mes_demandes")
+    except Exception as e:
+        return render_template("")

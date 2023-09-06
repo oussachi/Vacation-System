@@ -6,7 +6,7 @@ block content %}
     class="form-control"
     id="readOnlyInput"
     type="text"
-    placeholder={{
+    value={{
     demande.date_debut
     }}
     readonly=""
@@ -18,7 +18,7 @@ block content %}
     class="form-control"
     id="readOnlyInput"
     type="text"
-    placeholder={{
+    value={{
     demande.date_fin
     }}
     readonly=""
@@ -42,5 +42,20 @@ block content %}
 {% elif demande.statut == 'Refused' %}
 
 <h2>Motif : {{ demande.motif_refus }}</h2>
+
+{% elif demande.statut == 'Modified By Manager' %}
+
+<form 
+  style="float: left; margin-right: 50px" 
+  action="/employé/demande/{{ demande.id }}/accepter_proposition"
+  method="POST">
+    <button class="btn btn-warning" type="submit">
+      Accepter la proposition
+    </button>
+</form>
+
+<form action="/employé/demande/{{ demande.id }}/delete" method="POST">
+  <button type="Submit" class="btn btn-danger">Annuler la demande</button>
+</form>
 
 {% endif %} {{ error }} {% endblock %}
