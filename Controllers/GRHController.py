@@ -1,5 +1,6 @@
 from Models.models import *
-from flask import render_template, session, redirect
+from flask import render_template, session
+from sqlalchemy import or_
 from Controllers.xlsxController import *
 from Controllers.baseController import *
 
@@ -48,8 +49,11 @@ def getPendingDemandes():
         #demandes = demandeCongé.query.filter_by(statut="Processing")
         temps = demandeCongé.query.filter(
             demandeCongé.employee_matricule.in_(matricules),
-            demandeCongé.statut == 'Accepted By Manager'
-        )
+            or_(
+            demandeCongé.statut == 'Accepted By Manager',
+            demandeCongé.statut == 'Processing',
+            demandeCongé.statut == 'Modified By Manager'
+            ))
         for temp in temps:
             demandes.append(
                 demandeCongé.query.filter_by(id=temp.id).first()
@@ -141,3 +145,4 @@ def createAccount(request):
                                     link="/GRH/home")
     except Exception as e:
         return render_template("/GRH/nouveauCompte.html", error=str(e))
+    

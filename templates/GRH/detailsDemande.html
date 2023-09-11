@@ -26,6 +26,7 @@
   />
 </div>
 <br />
+{% if demande.statut == 'Accepted By Manager' %}
 <div style="float:right; margin-right: 50px; width: 500px;">
   <div style="float: left;">
     <form action="/GRH/demande_congé/{{ demande.id }}/approuver" method="POST">
@@ -38,6 +39,7 @@
         Refuser la demande
       </button>
   </div>
+{% endif %}
 </div>
 
 {{ error }}

@@ -4,6 +4,7 @@ from flask import Flask, render_template, request
 import datetime
 import os
 from Models.models import *
+from middleware import *
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 
@@ -50,36 +51,50 @@ def logout():
 # ----------------------------------------- Employee Endpoints ------------------------------ #
 
 
-@app.route('/employé/home')
+@app.route('/employé/home', endpoint="home_user")
+@login_required
+@check_if_employee
 def home_user():
 	return getEmployee()
 
 
-@app.route("/employé/nouvelle_demande", methods=["GET", "POST"])
+@app.route("/employé/nouvelle_demande", methods=["GET", "POST"], endpoint='nouvelle_demande')
+@login_required
+@check_if_employee
 def nouvelle_demande():
 	return createDemande(request)
 
 
-@app.route("/employé/mes_demandes")
+@app.route("/employé/mes_demandes", endpoint='mes_demandes')
+@login_required
+@check_if_employee
 def mes_demandes():
 	return getDemandes()
 
 
-@app.route("/employé/demande/<int:id>")
+@app.route("/employé/demande/<int:id>", endpoint='demande')
+@login_required
+@check_if_employee
 def demande(id):
 	return getDemande(id)
 
 
-@app.post("/employé/demande/<int:id>/delete")
+@app.post("/employé/demande/<int:id>/delete", endpoint='delete_demande')
+@login_required
+@check_if_employee
 def delete_demande(id):
 	return deleteDemande(id)
 
 
-@app.route("/employé/demande/<int:id>/edit", methods=['GET', 'POST'])
+@app.route("/employé/demande/<int:id>/edit", methods=['GET', 'POST'], endpoint='edit_demande')
+@login_required
+@check_if_employee
 def edit_demande(id):
 	return editDemande(request, id)
 
-@app.post("/employé/demande/<int:id>/accepter_proposition")
+@app.post("/employé/demande/<int:id>/accepter_proposition", endpoint='accepter_proposition')
+@login_required
+@check_if_employee
 def accepter_proposition(id):
 	return acceptProposition(id)
 
@@ -87,13 +102,20 @@ def accepter_proposition(id):
 # ----------------------------------------- GRH Endpoints ------------------------------ #
 
 
-@app.route("/GRH/home")
+@app.route("/GRH/home", endpoint='home_GRH')
+@check_if_GRH
 def home_GRH():
 	return getGRH()
+
+@app.route("/GRH/gestion_demandes", endpoint='gestion_demandes')
+@check_if_GRH
+def gestion_demandes():
+	return
 
 @app.route("/GRH/demandes_congé")
 def liste_demande():
 	return getPendingDemandes()
+
 
 @app.route("/GRH/demande_congé/<int:id>")
 def details_demande(id):
