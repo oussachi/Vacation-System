@@ -100,5 +100,5 @@ def getEmployeeSoldes_N_1(matricule):
     user_data = searchByColumn("Salariés", 1, matricule)[0]
     return user_data[6]  #index of soldes N - 1
 
-def getEmployeeSoldes():
-    return getEmployeeSoldes_N + getEmployeeSoldes_N_1
+def getEmployeeSoldes(matricule):
+    return getEmployeeSoldes_N(matricule) + getEmployeeSoldes_N_1(matricule)

@@ -15,8 +15,7 @@
       <td>{{ demande.employee_matricule }}</td>
       <td>{{ demande.date_debut }}</td>
       <td>{{ demande.date_fin }}</td>
-      <td>{{ soldes_disponibles }}</td>
-      <td>Valeur</td>
+      <td>{{ getEmployeeSoldes(demande.employee_matricule) }}</td>
     </tr>
     {% endfor %}
   </tbody>

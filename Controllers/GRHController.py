@@ -58,7 +58,7 @@ def getPendingDemandes():
             demandes.append(
                 demandeCongé.query.filter_by(id=temp.id).first()
             )
-        return render_template("/GRH/listeDemandes.html", demandes=reversed(demandes))
+        return render_template("/GRH/listeDemandes.html", demandes=reversed(demandes), getEmployeeSoldes=getEmployeeSoldes)
     except Exception as e:
         return render_template("/GRH/listeDemandes.html", error=str(e))
     
