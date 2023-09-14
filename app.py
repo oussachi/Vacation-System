@@ -1,7 +1,6 @@
 # ------------------------ IMPORTS ------------------------------------ #
 
 from flask import Flask, render_template, request
-import datetime
 import os
 from Models.models import *
 from middleware import *
@@ -211,8 +210,7 @@ def get_admin():
 
 @app.route("/admin/fonctions")
 def fonctions():
-	return render_template("/admin/fonctions.html")
-
+	return getFonctions()
 
 @app.route("/admin/users")
 def get_users():
@@ -225,6 +223,10 @@ def get_demandes():
 @app.route("/admin/demande/<int:id>")
 def get_demande(id):
 	return getPendingDemande_Admin(id)
+
+@app.post("/admin/demande/<int:id>/approuver")
+def approve_account_admin(id):
+	return approveAccount_Admin(id)
 
 @app.route("/admin/all_demandes")
 def get_all_demandes():

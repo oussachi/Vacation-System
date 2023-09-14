@@ -23,7 +23,7 @@ def sign_in(request):
 
                 return render_template("/messagePage.html", title="Sign In", 
                                     message="Your account is awaiting approval",
-                                    link="/signin")
+                                    link="/")
             else:
                 return render_template('/signin.html', error='User found with given matricule')
         else:
@@ -42,7 +42,7 @@ def loginFunction(request):
             if(not user.account_confirmed):
                 return render_template("/messagePage.html", title="Login", 
                                     message="Your account hasn't been approved yet",
-                                    link="/signin")
+                                    link="/")
             if(user):
                 hashed_input_password = hash_password(password)
                 if(hashed_input_password == user.hashed_password):

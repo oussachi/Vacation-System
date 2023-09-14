@@ -4,6 +4,11 @@ from Controllers.baseController import *
 from flask import session, redirect, render_template
 from sqlalchemy import or_
 
+
+def getFonctions():
+    return render_template("/adminfonctions.html")
+
+
 def getAllUsers():
     try:
         users = userLoginCredentials.query.all()
@@ -68,3 +73,15 @@ def getAllPendingAccountDemandes():
         return render_template("/messagePage.html", title="Accounts List", 
                                message=str(e),
                                link="/admin/home")
+    
+
+def approveAccount_Admin(id):
+    try:
+        account = userLoginCredentials.query.filter_by(id=id).first()
+        account.account_confirmed = True
+        db.session.commit()
+        return render_template("/messagePage.html", title="Account Approval", 
+                               message=f"Account of user {account.matricule} has been approved",
+                               link="/admin/home")
+    except Exception as e:
+        return render_template("/admin/detailsCompte.html", error=str(e))

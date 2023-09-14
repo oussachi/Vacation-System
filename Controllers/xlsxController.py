@@ -91,3 +91,14 @@ def getGRHByMatricule(matricule):
 def getManagerByMatricule(matricule):
     user_data = searchByColumn("Managers", 1, matricule)[0]
     return user_data
+
+def getEmployeeSoldes_N(matricule):
+    user_data = searchByColumn("Salariés", 1, matricule)[0]
+    return user_data[5]  #index of soldes N
+
+def getEmployeeSoldes_N_1(matricule):
+    user_data = searchByColumn("Salariés", 1, matricule)[0]
+    return user_data[6]  #index of soldes N - 1
+
+def getEmployeeSoldes():
+    return getEmployeeSoldes_N + getEmployeeSoldes_N_1

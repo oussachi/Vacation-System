@@ -21,6 +21,7 @@ def getPendingAccounts():
     except Exception as e:
         return render_template("/GRH/listeComptes.html", error=str(e))
 
+
 def getPendingAccount(id):
     try:
         account = userLoginCredentials.query.filter_by(id=id).first()
@@ -46,7 +47,6 @@ def getPendingDemandes():
         code = get_user().matricule
         demandes = []
         matricules = getEmployeesMatriculesByGRHCode(code)
-        #demandes = demandeCongé.query.filter_by(statut="Processing")
         temps = demandeCongé.query.filter(
             demandeCongé.employee_matricule.in_(matricules),
             or_(
