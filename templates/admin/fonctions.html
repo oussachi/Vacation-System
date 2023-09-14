@@ -1,14 +1,28 @@
 {% extends '/admin/base.html' %} {% block title %} Fonctions {% endblock %} {%
 block content %}
 <br />
-<button
-  type="button"
-  class="btn btn-primary"
-  onclick="window.location='/admin/users';"
->
-  Get all users
-</button>
-<button type="button" class="btn btn-primary">Primary</button>
-<button type="button" class="btn btn-primary">Primary</button>
-<button type="button" class="btn btn-primary">Primary</button>
+<div class="d-grid gap-2">
+  <button
+    type="button"
+    class="btn btn-lg btn-primary"
+    onclick="window.location='users';"
+  >
+    Get all users
+  </button>
+  <button
+    type="button"
+    class="btn btn-lg btn-primary"
+    onclick="window.location='demandes';"
+  >
+    Get GRH and Manager account requests
+  </button>
+  <button
+    type="button"
+    class="btn btn-lg btn-primary"
+    onclick="window.location='all_demandes';"
+  >
+    Get all requests
+  </button>
+</div>
+
 {% endblock %}

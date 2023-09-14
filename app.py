@@ -20,6 +20,9 @@ db.init_app(app)
 
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
+with app.app_context():
+	db.create_all()
+
 from Controllers.loginController import *
 from Controllers.baseController import *
 from Controllers.employeeController import *
@@ -112,40 +115,56 @@ def home_GRH():
 def gestion_demandes():
 	return
 
-@app.route("/GRH/demandes_congé")
+@app.route("/GRH/demandes_congé", endpoint="liste_demande")
+@check_if_GRH
 def liste_demande():
 	return getPendingDemandes()
 
 
-@app.route("/GRH/demande_congé/<int:id>")
+@app.route("/GRH/demande_congé/<int:id>", endpoint="details_demande")
+@check_if_GRH
 def details_demande(id):
 	return getPendingDemande(id)
 
-@app.route("/GRH/demande_congé/<int:id>/refuser", methods=['GET', 'POST'])
+
+@app.route("/GRH/demande_congé/<int:id>/refuser", methods=['GET', 'POST'], endpoint='refuser_demande')
+@check_if_GRH
 def refuser_demande(id):
 	return refuseDemande(request, id)
 
-@app.post("/GRH/demande_congé/<int:id>/approuver")
+
+@app.post("/GRH/demande_congé/<int:id>/approuver", endpoint="approuver_demande")
+@check_if_GRH
 def approuver_demande(id):
 	return acceptDemande(request, id)
 
-@app.route("/GRH/gestion_comptes")
+
+@app.route("/GRH/gestion_comptes", endpoint="gestion_comptes")
+@check_if_GRH
 def gestion_comptes():
 	return getAccountFunctions()
 
-@app.route("/GRH/creation_compte", methods=['GET', 'POST'])
+
+@app.route("/GRH/creation_compte", methods=['GET', 'POST'], endpoint="creation_compte")
+@check_if_GRH
 def creation_compte():
 	return createAccount(request)
 
-@app.get("/GRH/demandes_compte")
+
+@app.get("/GRH/demandes_compte", endpoint="demandes_compte")
+@check_if_GRH
 def demandes_compte():
 	return getPendingAccounts()
 
-@app.get("/GRH/demande_compte/<int:id>")
+
+@app.get("/GRH/demande_compte/<int:id>", endpoint="demande_compte")
+@check_if_GRH
 def demande_compte(id):
 	return getPendingAccount(id)
 
-@app.post("/GRH/demande_compte/<int:id>/approuver")
+
+@app.post("/GRH/demande_compte/<int:id>/approuver", endpoint="approuver_compte")
+@check_if_GRH
 def approuver_compte(id):
 	return approveAccount(id)
 
@@ -153,27 +172,32 @@ def approuver_compte(id):
 # ----------------------------------------- Manager Endpoints ------------------------------ #
 
 
-@app.route("/manager/home")
+@app.route("/manager/home", endpoint="home_manager")
+@check_if_manager
 def home_manager():
 	return getManager()
 
 
-@app.route("/manager/demandes")
+@app.route("/manager/demandes", endpoint='manager_demandes')
+@check_if_manager
 def manager_demandes():
 	return getPendingDemandes_Manager()
 
 
-@app.route("/manager/demande/<int:id>")
+@app.route("/manager/demande/<int:id>", endpoint='manager_demande')
+@check_if_manager
 def manager_demande(id):
 	return getPendingDemande_Manager(id)
 
 
-@app.route("/manager/demande/<int:id>/proposition", methods=['GET', 'POST'])
+@app.route("/manager/demande/<int:id>/proposition", methods=['GET', 'POST'], endpoint='proposition')
+@check_if_manager
 def proposition(id):
 	return proposerDate(request, id)
 
 
-@app.post("/manager/demande/<int:id>/approuver")
+@app.post("/manager/demande/<int:id>/approuver", endpoint='approiver_demande_manager')
+@check_if_manager
 def approuver_demande_manager(id):
 	return acceptDemande_Manager(id)
 
@@ -193,6 +217,18 @@ def fonctions():
 @app.route("/admin/users")
 def get_users():
 	return getAllUsers()
+
+@app.route("/admin/demandes")
+def get_demandes():
+	return getPendingDemandes_Admin()
+
+@app.route("/admin/demande/<int:id>")
+def get_demande(id):
+	return getPendingDemande_Admin(id)
+
+@app.route("/admin/all_demandes")
+def get_all_demandes():
+	return getAllPendingAccountDemandes()
 
 # ---------------------------------------------------------------------------------------- #
 if __name__ == '__main__':

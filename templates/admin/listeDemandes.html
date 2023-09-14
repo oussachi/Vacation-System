@@ -1,0 +1,22 @@
+{% extends '/admin/base.html' %} 
+{%block title %} Liste des demandes de compte {% endblock %}
+{% block content %}
+    <table class="table table-hover" style="width: 100%">
+      <thead>
+        <tr>
+          <th scope="col">Matricule</th>
+          <th scope="col">Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for compte in comptes %}
+        <tr class="table-secondary" onclick="window.location='demande/{{ compte.id }}';" style="cursor: pointer;">
+          <td>{{ compte.matricule }}</td>
+          <td>{{ compte.role }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <br />
+    {{error}}
+{% endblock %}

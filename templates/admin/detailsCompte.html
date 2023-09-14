@@ -1,0 +1,62 @@
+{% extends '/admin/base.html' %} {% block title %} Details compte {% endblock %} 
+{% block content %}
+<div>
+  <img
+    src="{{ url_for('static', filename='missing-profile-photo.png') }}"
+    alt="Not found"
+    onerror="this.src='static/missing-profile-photo.png';"
+    style="float: left"
+  />
+</div>
+<table class="table table-hover" style="line-height: 0.5">
+  <tbody>
+    <tr class="table-primary">
+      <th scope="row">Matricule</th>
+      <td>{{ user.matricule }}</td>
+    </tr>
+    <tr class="table-primary">
+      <th scope="row">Nom et prénom</th>
+      <td>Valeur</td>
+    </tr>
+    <tr class="table-primary">
+      <th scope="row">Date et lieu de naissance</th>
+      <td>Valeur</td>
+    </tr>
+    <tr class="table-primary">
+      <th scope="row">Poste</th>
+      <td>Valeur</td>
+    </tr>
+    <tr class="table-primary">
+      <th scope="row">Service</th>
+      <td>Valeur</td>
+    </tr>
+    <tr class="table-primary">
+      <th scope="row">Site</th>
+      <td>Valeur</td>
+    </tr>
+    <tr class="table-primary">
+      <th scope="row">Profil</th>
+      <td>{{ user.role }}</td>
+    </tr>
+    <tr class="table-primary">
+      <th scope="row">Congé acquis (N)</th>
+      <td>Valeur</td>
+    </tr>
+    <tr class="table-primary">
+      <th scope="row">Congé acquis (N - 1)</th>
+      <td>Valeur</td>
+    </tr>
+  </tbody>
+</table>
+
+{% if user.role != 'Employé' %}
+<div style="text-align: center;">
+  <form method="POST" action="demande_compte/{{ user.id }}/approuver">
+    <button type="Submit" class="btn btn-success">Approuver ce compte</button>
+  </form>
+</div>
+<br />
+{% endif %}
+
+{{ error }}
+{% endblock %}
