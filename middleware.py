@@ -59,3 +59,20 @@ def check_if_manager(f):
             return redirect("/")
         return f(*args, **kwargs)
     return check_manager
+
+def check_if_admin(f):
+    wraps(f)
+    def check_admin(*args, **kwargs):
+        try:
+            matricule = session['user']
+            user = userLoginCredentials.query.filter_by(matricule=matricule).first()
+            if (user.role != 'Admin'):
+                if(user.role == 'GRH'):
+                    return redirect("/GRH/home")
+                if(user.role == 'Manager'):
+                    return redirect("/manager/home")
+                return redirect("/Employé/home")
+        except:
+            return redirect("/")
+        return f(*args, **kwargs)
+    return check_admin
