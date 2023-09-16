@@ -1,25 +1,27 @@
 {% extends '/GRH/base.html' %} {% block title %} Profil {% endblock %} {% block
 content %}
-<form action="/GRH/creation_compte" method="POST">
-  <legend>Nouveau compte</legend>
-  <div class="form-group">
-    <label class="form-label mt-4">Matricule</label>
-    <input type="text" name="matricule" class="form-control" required />
-  </div>
-  <div class="form-group">
-    <label class="form-label mt-4">Password</label>
-    <input type="password" name="password" class="form-control" required />
-  </div>
-  <div class="form-group" style="width: 50%;">
-    <label class="form-label mt-4">Role</label>
-    <select class="form-select" name="role" required>
-      <option>Manager</option>
-      <option>Employé</option>
-    </select>
-  </div>
-  <br />
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<div style="padding-left: 20px;">
+  <form action="/GRH/creation_compte" method="POST">
+    <legend>Nouveau compte</legend>
+    <div class="form-group">
+      <label class="form-label mt-4">Matricule</label>
+      <input type="text" name="matricule" class="form-control" required />
+    </div>
+    <div class="form-group">
+      <label class="form-label mt-4">Password</label>
+      <input type="password" name="password" class="form-control" required />
+    </div>
+    <div class="form-group" style="width: 50%">
+      <label class="form-label mt-4">Role</label>
+      <select class="form-select" name="role" required>
+        <option>Manager</option>
+        <option>Employé</option>
+      </select>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 
-{{ error }}
+  {{ error }}
+</div>
 {% endblock %}
