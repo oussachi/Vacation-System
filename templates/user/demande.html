@@ -1,61 +1,70 @@
 {% extends '/user/base.html' %} {% block title %} Demande {% endblock %} {%
 block content %}
-<div class="form-group">
-  <label class="form-label mt-4" for="readOnlyInput">Date de début</label>
-  <input
-    class="form-control"
-    id="readOnlyInput"
-    type="text"
-    value={{
-    demande.date_debut
-    }}
-    readonly=""
-  />
-</div>
-<div class="form-group">
-  <label class="form-label mt-4" for="readOnlyInput">Date de fin</label>
-  <input
-    class="form-control"
-    id="readOnlyInput"
-    type="text"
-    value={{
-    demande.date_fin
-    }}
-    readonly=""
-  />
-</div>
-<br />
-{% if demande.statut == 'Processing' %}
+<div style="padding-left: 10px; padding-top: 20px;">
+  <div class="form-group">
+    <label class="form-label mt-4" style="padding-left: 10px;">Date de début</label>
+    <input
+      class="form-control"
+      id="readOnlyInput"
+      type="text"
+      value={{
+      demande.date_debut
+      }}
+      readonly=""
+    />
+  </div>
+  <br />
+  <div class="form-group">
+    <label class="form-label mt-4" style="padding-left: 10px;">Date de fin</label>
+    <input
+      class="form-control"
+      id="readOnlyInput"
+      type="text"
+      value={{
+      demande.date_fin
+      }}
+      readonly=""
+    />
+  </div>
+  <br />
+  <br />
+  <br />
+  {% if demande.statut == 'Processing' %}
 
-<button
-  style="float: left; margin-right: 50px"
-  class="btn btn-warning"
-  onclick="window.location='demande/{{ demande.id }}/edit';"
->
-  Modifier la demande
-</button>
+  <div style="padding-left: 50px;">
+    <button
+      style="float: left; margin-right: 100px"
+      class="btn btn-warning"
+      onclick="window.location='demande/{{ demande.id }}/edit';"
+    >
+      Modifier la demande
+    </button>
 
-<form action="/employé/demande/{{ demande.id }}/delete" method="POST">
-  <button type="Submit" class="btn btn-danger">Annuler la demande</button>
-</form>
+    <form action="/employé/demande/{{ demande.id }}/delete" method="POST">
+      <button type="Submit" class="btn btn-danger">Annuler la demande</button>
+    </form>
+  </div>
 
-{% elif demande.statut == 'Refused' %}
+  {% elif demande.statut == 'Refused' %}
 
-<h2>Motif : {{ demande.motif_refus }}</h2>
+  <h2>Motif : {{ demande.motif_refus }}</h2>
 
-{% elif demande.statut == 'Modified By Manager' %}
+  {% elif demande.statut == 'Modified By Manager' %}
 
-<form 
-  style="float: left; margin-right: 50px" 
-  action="/employé/demande/{{ demande.id }}/accepter_proposition"
-  method="POST">
+  <form
+    style="float: left; margin-right: 50px"
+    action="/employé/demande/{{ demande.id }}/accepter_proposition"
+    method="POST"
+  >
     <button class="btn btn-warning" type="submit">
       Accepter la proposition
     </button>
-</form>
+  </form>
 
-<form action="/employé/demande/{{ demande.id }}/delete" method="POST">
-  <button type="Submit" class="btn btn-danger">Annuler la demande</button>
-</form>
+  <form action="/employé/demande/{{ demande.id }}/delete" method="POST">
+    <button type="Submit" class="btn btn-danger">Annuler la demande</button>
+  </form>
 
-{% endif %} {{ error }} {% endblock %}
+  {% endif %} {{ error }}
+</div>
+{% endblock %}
