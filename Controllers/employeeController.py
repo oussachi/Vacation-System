@@ -11,6 +11,14 @@ def createDemande(request):
             user_matricule = session['user']
             date_debut = request.form['debut']
             date_fin = request.form['fin']
+            if(not(correctDateOrder(date_debut, date_fin))):
+                return render_template("/messagePage.html", title="Demande non valide", 
+                                message=f"Mauvais ordre des dates",
+                                link="/employé/nouvelle_demande")
+            elif(not(correctWithSoldesValue(date_debut, date_fin, user_matricule))):
+                return render_template("/messagePage.html", title="Demande non valide", 
+                                message=f"Votre solde n'est pas suffisant",
+                                link="/employé/nouvelle_demande")
             new_demande = demandeCongé(
                 date_debut = date_debut,
                 date_fin = date_fin,
