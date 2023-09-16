@@ -52,7 +52,8 @@ def getPendingDemandes():
             or_(
             demandeCongé.statut == 'Accepted By Manager',
             demandeCongé.statut == 'Processing',
-            demandeCongé.statut == 'Modified By Manager'
+            demandeCongé.statut == 'Modified By Manager',
+            demandeCongé.statut == 'Managerial',
             ))
         for temp in temps:
             demandes.append(

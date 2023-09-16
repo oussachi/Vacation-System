@@ -201,6 +201,32 @@ def approuver_demande_manager(id):
 	return acceptDemande_Manager(id)
 
 
+@app.route("/manager/nouvelle_demande", methods=["GET", "POST"], endpoint='nouvelle_demande_manager')
+@check_if_manager
+def nouvelle_demande_manager():
+	return createDemande_manager(request)
+
+@app.route("/manager/mes_demandes", endpoint='mes_demandes_manager')
+@check_if_manager
+def mes_demandes_manager():
+	return getDemandes_manager()
+
+@app.route("/manager/ma_demande/<int:id>", endpoint='demande_manager')
+@check_if_manager
+def demande_manager(id):
+	return getDemande_manager(id)
+
+@app.post("/manager/ma_demande/<int:id>/delete", endpoint='delete_demande_manager')
+@check_if_manager
+def delete_demande_manager(id):
+	return deleteDemande_manager(id)
+
+
+@app.route("/manager/ma_demande/<int:id>/edit", methods=['GET', 'POST'], endpoint='edit_demande_manager')
+@check_if_manager
+def edit_demande_manager(id):
+	return editDemande_manager(request, id)
+
 # ----------------------------------------- Admin Endpoints ------------------------------ #
 
 @app.route("/admin/home")

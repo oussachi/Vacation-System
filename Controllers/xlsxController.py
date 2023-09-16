@@ -102,3 +102,14 @@ def getEmployeeSoldes_N_1(matricule):
 
 def getEmployeeSoldes(matricule):
     return getEmployeeSoldes_N(matricule) + getEmployeeSoldes_N_1(matricule)
+
+def getManagerSoldes_N(matricule):
+    user_data = searchByColumn("Managers", 1, matricule)[0]
+    return user_data[4]  #index of soldes N
+
+def getManagerSoldes_N_1(matricule):
+    user_data = searchByColumn("Managers", 1, matricule)[0]
+    return user_data[5]  #index of soldes N - 1
+
+def getManagerSoldes(matricule):
+    return getManagerSoldes_N(matricule) + getManagerSoldes_N_1(matricule)

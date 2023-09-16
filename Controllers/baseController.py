@@ -38,9 +38,12 @@ def correctDateOrder(debut, fin):
     diff = fin - debut
     return (diff.days > 0)
 
-def correctWithSoldesValue(debut, fin, matricule):
+def correctWithSoldesValue(debut, fin, matricule, role):
     debut = datetime.datetime.strptime(debut, "%Y-%m-%d")
     fin = datetime.datetime.strptime(fin, "%Y-%m-%d")
     diff = fin - debut
-    soldes = getEmployeeSoldes(matricule)
+    if(role == 'Employee'):
+        soldes = getEmployeeSoldes(matricule)
+    else:
+        soldes = getManagerSoldes(matricule)
     return (diff.days - 1 <= soldes)

@@ -1,0 +1,37 @@
+{% extends '/manager/base.html'%} {% block title %} Mes demandes {% endblock %} {%
+block content %}
+<table class="table table-hover" style="width: 100%">
+  <thead>
+    <tr>
+      <th scope="col">Date début</th>
+      <th scope="col">Date fin</th>
+      <th scope="col">Statut</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for demande in demandes %}
+      {% if demande.statut == 'Accepted' %}
+      <tr class="table-success">
+        <td>{{ demande.date_debut }}</td>
+        <td>{{ demande.date_fin }}</td>
+        <td>{{ demande.statut }}</td>
+      </tr>
+      {% elif demande.statut == 'Refused'%}
+      <tr class="table-danger" onclick="window.location='ma_demande/{{ demande.id }}';" style="cursor: pointer;">
+        <td>{{ demande.date_debut }}</td>
+        <td>{{ demande.date_fin }}</td>
+        <td>{{ demande.statut }}</td>
+      </tr>
+      {% else %}
+      <tr class="table-warning"  onclick="window.location='ma_demande/{{ demande.id }}';" style="cursor: pointer;">
+        <td>{{ demande.date_debut }}</td>
+        <td>{{ demande.date_fin }}</td>
+        <td>{{ demande.statut }}</td>
+      </tr>
+      {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+
+{{ error }}
+{% endblock %}

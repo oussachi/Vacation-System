@@ -15,7 +15,7 @@ def createDemande(request):
                 return render_template("/messagePage.html", title="Demande non valide", 
                                 message=f"Mauvais ordre des dates",
                                 link="/employé/nouvelle_demande")
-            elif(not(correctWithSoldesValue(date_debut, date_fin, user_matricule))):
+            elif(not(correctWithSoldesValue(date_debut, date_fin, user_matricule, 'Employee'))):
                 return render_template("/messagePage.html", title="Demande non valide", 
                                 message=f"Votre solde n'est pas suffisant",
                                 link="/employé/nouvelle_demande")

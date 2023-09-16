@@ -1,0 +1,54 @@
+{% extends '/manager/base.html' %} {% block title %} Demande {% endblock %} {%
+block content %}
+<div style="padding-left: 10px; padding-top: 20px;">
+  <div class="form-group">
+    <label class="form-label mt-4" style="padding-left: 10px;">Date de début</label>
+    <input
+      class="form-control"
+      id="readOnlyInput"
+      type="text"
+      value={{
+      demande.date_debut
+      }}
+      readonly=""
+    />
+  </div>
+  <br />
+  <div class="form-group">
+    <label class="form-label mt-4" style="padding-left: 10px;">Date de fin</label>
+    <input
+      class="form-control"
+      id="readOnlyInput"
+      type="text"
+      value={{
+      demande.date_fin
+      }}
+      readonly=""
+    />
+  </div>
+  <br />
+  <br />
+  <br />
+  {% if demande.statut == 'Managerial' %}
+
+  <div style="padding-left: 50px;">
+    <button
+      style="float: left; margin-right: 100px"
+      class="btn btn-warning"
+      onclick="window.location='ma_demande/{{ demande.id }}/edit';"
+    >
+      Modifier la demande
+    </button>
+
+    <form action="/manager/ma_demande/{{ demande.id }}/delete" method="POST">
+      <button type="Submit" class="btn btn-danger">Annuler la demande</button>
+    </form>
+  </div>
+
+  {% elif demande.statut == 'Refused' %}
+
+  <h2>Motif : {{ demande.motif_refus }}</h2>
+  
+  {% endif %} {{ error }}
+</div>
+{% endblock %}
