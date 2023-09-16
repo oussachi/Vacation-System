@@ -53,8 +53,8 @@ def proposerDate(request, id):
             demande.date_fin = nouvelle_date_fin
             demande.statut = "Modified By Manager"
             db.session.commit()
-            return redirect(f"/manager/demande/{demande.id}")
+            return redirect(f"/manager/demandes")
         else:
-            return render_template("/manager/proposition.html", demande=demande)
+            return render_template("/manager/proposition.html", demande=demande, soldesFunc=getEmployeeSoldes)
     except Exception as e:
         return render_template("/manager/demande.html", error=str(e))

@@ -6,7 +6,7 @@ from sqlalchemy import or_
 
 
 def getFonctions():
-    return render_template("/adminfonctions.html")
+    return render_template("/admin/fonctions.html")
 
 
 def getAllUsers():

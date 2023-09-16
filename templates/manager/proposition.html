@@ -6,6 +6,7 @@
       <th scope="col">Employé</th>
       <th scope="col">Date début</th>
       <th scope="col">Date fin</th>
+      <th scope="col">Soldes disponibles</th>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +18,7 @@
       <td>{{ demande.employee_matricule }}</td>
       <td>{{ demande.date_debut }}</td>
       <td>{{ demande.date_fin }}</td>
+      <td>{{ soldesFunc(demande.employee_matricule) }}</td>
     </tr>
   </tbody>
 </table>
@@ -32,6 +34,7 @@
       <input type="date" class="form-control" style="width: 400px" name="fin" required/>
     </div>
   </div>
+  <br />
   <br />
   <div style="text-align: center">
     <button type="submit" class="btn btn-primary">
