@@ -118,7 +118,7 @@ def deleteDemande_manager(id):
     except Exception as e:
         return render_template('/manager/ma_demande.html', error=str(e))
     
-def editDemande_manager(request, id):
+def editDemandeOFManager(request, id):
     try:
         if(request.method == 'POST'):
             demande = demandeCongé.query.filter_by(id=id).first()
@@ -133,4 +133,4 @@ def editDemande_manager(request, id):
             user = get_user()
             return render_template("/manager/modifierDemande.html", user=user, demande=demande)
     except Exception as e:
-        return render_template('/user/demande.html', error=str(e))
+        return render_template('/manager/ma_demande.html', error=str(e))

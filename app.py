@@ -1,4 +1,3 @@
-#! env/bin/python3
 # ------------------------ IMPORTS ------------------------------------ #
 
 from flask import Flask, render_template, request
@@ -223,10 +222,10 @@ def delete_demande_manager(id):
 	return deleteDemande_manager(id)
 
 
-@app.route("/manager/ma_demande/<int:id>/edit", methods=['GET', 'POST'], endpoint='edit_demande_manager')
+@app.route("/manager/ma_demande/<int:id>/edit", methods=['GET', 'POST'], endpoint='edit_demande_of_manager')
 @check_if_manager
-def edit_demande_manager(id):
-	return editDemande_manager(request, id)
+def edit_demande_of_manager(id):
+	return editDemandeOFManager(request, id)
 
 # ----------------------------------------- Admin Endpoints ------------------------------ #
 
@@ -268,4 +267,4 @@ def get_all_demandes():
 
 # ---------------------------------------------------------------------------------------- #
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run(debug=True, host='0.0.0.0')

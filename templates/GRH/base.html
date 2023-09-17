@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>{% block title %} {% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}" />
-    <base href="http://localhost:5000/GRH/">
+    <base href="/GRH/">
   </head>
   <body>
     <form style="display: none;" action="/logout" method="POST" id="myForm">
@@ -13,7 +13,7 @@
     <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
       <div class="container-fluid">
         <div>
-            <img src="/static/g22.png" width="200" height="60">
+            <img src="{{ url_for('static', filename='g22.png') }}" width="200" height="60">
         </div>
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav me-auto">
