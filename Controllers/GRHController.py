@@ -25,7 +25,8 @@ def getPendingAccounts():
 def getPendingAccount(id):
     try:
         account = userLoginCredentials.query.filter_by(id=id).first()
-        return render_template("/GRH/detailsCompte.html", user=account)
+        user_data = getUserByMatricule(account.matricule)
+        return render_template("/GRH/detailsCompte.html", user=user_data)
     except Exception as e:
         return render_template("/GRH/detailsCompte.html", error=str(e))
 
@@ -105,6 +106,7 @@ def acceptDemande(request, id):
 def getGRH():
     matricule = session['user']
     user = getGRHByMatricule(matricule)
+    print(user)
     return render_template("/GRH/profil.html", user=user)
 
 
