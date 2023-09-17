@@ -231,31 +231,38 @@ def edit_demande_manager(id):
 # ----------------------------------------- Admin Endpoints ------------------------------ #
 
 @app.route("/admin/home", endpoint='get_admin')
+@check_if_admin
 def get_admin():
 	return render_template("/admin/profil.html")
 
 
 @app.route("/admin/fonctions", endpoint='fonctions')
+@check_if_admin
 def fonctions():
 	return getFonctions()
 
 @app.route("/admin/users", endpoint='get_users')
+@check_if_admin
 def get_users():
 	return getAllUsers()
 
 @app.route("/admin/demandes", endpoint='get_demandes')
+@check_if_admin
 def get_demandes():
 	return getPendingDemandes_Admin()
 
 @app.route("/admin/demande/<int:id>", endpoint='get_demande')
+@check_if_admin
 def get_demande(id):
 	return getPendingDemande_Admin(id)
 
 @app.post("/admin/demande/<int:id>/approuver", endpoint='approve_account_admin')
+@check_if_admin
 def approve_account_admin(id):
 	return approveAccount_Admin(id)
 
 @app.route("/admin/all_demandes", endpoint='get_all_demandes')
+@check_if_admin
 def get_all_demandes():
 	return getAllPendingAccountDemandes()
 
