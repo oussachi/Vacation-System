@@ -60,6 +60,7 @@ def check_if_manager(f):
         return f(*args, **kwargs)
     return check_manager
 
+
 def check_if_admin(f):
     wraps(f)
     def check_admin(*args, **kwargs):
