@@ -12,7 +12,6 @@ def sendResponse(data, message):
     }
     
 
-
 def sendErrorMessage(message):
     return {
         'result': False,
@@ -32,11 +31,13 @@ def hash_password(password):
     hashed_password = h.hexdigest()
     return hashed_password
 
+
 def correctDateOrder(debut, fin):
     debut = datetime.datetime.strptime(debut, "%Y-%m-%d")
     fin = datetime.datetime.strptime(fin, "%Y-%m-%d")
     diff = fin - debut
     return (diff.days > 0)
+
 
 def correctWithSoldesValue(debut, fin, matricule, role):
     debut = datetime.datetime.strptime(debut, "%Y-%m-%d")

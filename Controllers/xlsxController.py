@@ -80,6 +80,20 @@ def getEmployeesMatriculesByManagerCode(code):
     return matricules
 
 
+def getManagersMatriculesByGRHCode(code):
+    matricules = []
+    sheet = open_sheet("Managers")
+    max_row = sheet.max_row
+
+    # Column 3 is the GRH column
+    for i in range(2, max_row + 1):
+        cell_obj = sheet.cell(row=i, column=3)
+        if(cell_obj.value == str(code)):
+            matricule = sheet.cell(row=i, column=1)
+            matricules.append(matricule.value)
+    return matricules
+
+
 def getUserByMatricule(matricule):
     user_data = searchByColumn("Salariés", 1, matricule)[0]
     return user_data

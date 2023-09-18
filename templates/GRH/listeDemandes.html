@@ -15,8 +15,12 @@
       <td>{{ demande.employee_matricule }}</td>
       <td>{{ demande.date_debut }}</td>
       <td>{{ demande.date_fin }}</td>
-      <td>{{ getEmployeeSoldes(demande.employee_matricule) }}</td>
+      {% if demande.statut == 'Managerial' %}
+        <td>{{ getManagerSoldes(demande.employee_matricule) }}</td>
+      {% else %}
+        <td>{{ getEmployeeSoldes(demande.employee_matricule) }}</td>  
     </tr>
+      {% endif %}
     {% endfor %}
   </tbody>
 </table>

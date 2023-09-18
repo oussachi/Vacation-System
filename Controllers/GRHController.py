@@ -26,7 +26,7 @@ def getPendingAccount(id):
     try:
         account = userLoginCredentials.query.filter_by(id=id).first()
         user_data = getUserByMatricule(account.matricule)
-        return render_template("/GRH/detailsCompte.html", user=user_data)
+        return render_template("/GRH/detailsCompte.html", user=user_data, user_id=id)
     except Exception as e:
         return render_template("/GRH/detailsCompte.html", error=str(e))
 
@@ -47,7 +47,8 @@ def getPendingDemandes():
     try:
         code = get_user().matricule
         demandes = []
-        matricules = getEmployeesMatriculesByGRHCode(code)
+        matricules = getEmployeesMatriculesByGRHCode(code) + getManagersMatriculesByGRHCode(code)
+        print(matricules)
         temps = demandeCongé.query.filter(
             demandeCongé.employee_matricule.in_(matricules),
             or_(
@@ -60,7 +61,10 @@ def getPendingDemandes():
             demandes.append(
                 demandeCongé.query.filter_by(id=temp.id).first()
             )
-        return render_template("/GRH/listeDemandes.html", demandes=reversed(demandes), getEmployeeSoldes=getEmployeeSoldes)
+        return render_template("/GRH/listeDemandes.html", 
+                               demandes=reversed(demandes), 
+                               getEmployeeSoldes=getEmployeeSoldes,
+                               getManagerSoldes=getManagerSoldes)
     except Exception as e:
         return render_template("/GRH/listeDemandes.html", error=str(e))
     

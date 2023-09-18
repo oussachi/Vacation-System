@@ -57,8 +57,12 @@ def getPendingDemandes_Admin():
 
 def getPendingDemande_Admin(id):
     try:
-        demande = userLoginCredentials.query.filter_by(id=id).first()
-        return render_template("/admin/detailsCompte.html", user=demande)
+        user_data = userLoginCredentials.query.filter_by(id=id).first()
+        if(user_data.role == 'GRH'):
+            user = getGRHByMatricule(user_data.matricule)
+        else:
+            user = getManagerByMatricule(user_data.matricule)
+        return render_template("/admin/detailsCompte.html", user=user, role=user_data.role)
     except Exception as e:
         return render_template("/messagePage.html", title="Accounts Request", 
                                message=str(e),

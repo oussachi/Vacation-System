@@ -22,7 +22,7 @@ def getPendingDemandes_Manager():
             demandes.append(
                 demandeCongé.query.filter_by(id=temp.id).first()
             )
-        return render_template("/manager/listeDemandes.html", demandes=demandes)
+        return render_template("/manager/listeDemandes.html", demandes=demandes,  getSoldes=getEmployeeSoldes)
     except Exception as e:
         return render_template("/manager/listeDemandes.html", error=str(e))
     
